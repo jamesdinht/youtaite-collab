@@ -286,3 +286,9 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# Ignore vscode folder
+*.vscode
+
+# Ignore environment-specific configurations
+appsettings.Development.json
