@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace Collab.Models.Data
 {
@@ -8,7 +9,7 @@ namespace Collab.Models.Data
         {
             context.Database.EnsureCreated();
 
-            if (context.Users.Local.Count > 0)
+            if (context.Users.Any())
             {
                 return;
             }
