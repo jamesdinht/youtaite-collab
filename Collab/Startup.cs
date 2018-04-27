@@ -12,6 +12,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 
 using Swashbuckle.AspNetCore.Swagger;
+using Collab.DAL;
+using Collab.BLL;
 
 namespace Collab
 {
@@ -36,6 +38,11 @@ namespace Collab
             {
                 c.SwaggerDoc(SwaggerVersion, new Info { Title = "Youtaite Collab API", Version = SwaggerVersion });
             });
+
+            services.AddDbContext<CollabContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("CollabDb")));
+
+            services.AddTransient<IRepository<User>, UserRepository>();
         }
 
         // For Development environment
@@ -43,7 +50,17 @@ namespace Collab
             services.AddMvc();
 
             services.AddDbContext<CollabContext>(options => 
-                options.UseSqlite(Configuration.GetConnectionString("Sqlite")));
+                options.UseSqlServer(Configuration.GetConnectionString("CollabDb")));
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc(SwaggerVersion, new Info { Title = "Youtaite Collab API Dev", Version = SwaggerVersion });
+            });
+
+            services.AddDbContext<CollabContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("CollabDb")));
+
+            services.AddTransient<IRepository<User>, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

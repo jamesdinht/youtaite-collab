@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Collab.Models;
 
 namespace Collab.DAL
 {
     public interface IRepository<TEntity> where TEntity : BaseModel
     {
-        void Create(TEntity entity);
-        bool Update(string id, TEntity entity);
-        bool Delete(string id);
-        IEnumerable<TEntity> GetAll();
-        TEntity GetById(string id);
+        Task CreateAsync(TEntity entity);
+        Task<bool> UpdateAsync(Guid id, TEntity entity);
+        Task<bool> DeleteAsync(Guid id);
+        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<TEntity> GetByIdAsync(Guid id);
     }
 }

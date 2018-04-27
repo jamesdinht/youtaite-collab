@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Collab.DAL;
 using Collab.Models;
 
@@ -8,33 +10,34 @@ namespace Collab.BLL
     {
         private readonly CollabContext db;
 
-        public UserRepository(CollabContext db) {
+        public UserRepository(CollabContext db)
+        {
             this.db = db;
         }
 
-        public void Create(User user)
+        public Task CreateAsync(User entity)
         {
-            
+            throw new NotImplementedException();
         }
 
-        public bool Delete(string id)
+        public Task<bool> DeleteAsync(Guid id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll()
+        public Task<IEnumerable<User>> GetAllAsync()
         {
-            return db.Users;
+            throw new NotImplementedException();
         }
 
-        public User GetById(string id)
+        public Task<User> GetByIdAsync(Guid id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public bool Update(string id, User user)
+        public Task<bool> UpdateAsync(Guid id, User entity)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

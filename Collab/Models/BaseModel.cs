@@ -1,7 +1,9 @@
+using System;
+
 namespace Collab.Models
 {
-    public class BaseModel
+    public abstract class BaseModel
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
     }
 }
