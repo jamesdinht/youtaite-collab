@@ -1,5 +1,7 @@
+[![Build Status](https://travis-ci.org/jamesdinht/youtaite-collab.svg?branch=dev)](https://travis-ci.org/jamesdinht/youtaite-collab)
+
 # Youtaite Collab Tool
-Site: TBA
+Site: TBA 
 
 A web application designed to help organize collaborations and chorus battles by offering a specialized UI for Youtaite projects.
 
