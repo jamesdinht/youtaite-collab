@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jamesdinht/youtaite-collab.svg?branch=dev)](https://travis-ci.org/jamesdinht/youtaite-collab)
+[![Build Status](https://travis-ci.org/jamesdinht/youtaite-collab.svg?branch=dev)](https://travis-ci.org/jamesdinht/youtaite-collab) [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=youtaite-collab)](https://sonarcloud.io/dashboard?id=youtaite-collab/dashboard/index/youtaite-collab)
 
 # Youtaite Collab Tool
 Site: TBA 
