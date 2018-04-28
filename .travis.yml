@@ -5,14 +5,14 @@ dotnet: 2.0.0
 
 addons:
   sonarcloud:
-    organization: "youtaite-collab"
+    organization: youtaite-collab
     token:
-      secure: "SKFR4FWC0mmJ4QHr1hf21JHwhg2Xmgbg3MmCiSR7D1FB1122K6TTf8pwRTrSEf666V07Kfllxymdvcn8WTFvRjYx3S0cZEAuyh66jroN4FvOHwHXTl94yLi9hRLEmstckAKwvKC/yyk3JRqHn3rWsGOUZdRGUaH/o5Og/ayrv8pnAQJEEacYmIILssCjAXPwKVa+x35WW7gcA/9rDc+Ia5otvdUYNCdaHqALmIEPyMy2dzR4kucfp8KwMMpISehGCkMq43qslHLzPfSu5VAsAoH8hOaRFADvHCZy2hD34ZGbVAwb+CN/abJLQb7t2DnHL26caEN35gJzfvd2R/4zFH1+2Nd9Pmz5/ifyrTgR2A2IURBv15z+mysUTdxCnn7mEFOsfZcHNFn175WwTkN2B6V7mHGNacagxJBpTdxLV9uAIor2AV+d1mGKkBYccF7xs9Uh/WAJKLHpgjlb5hNB3QWNFCktiopu2xf1g5VBhtzh1AiYNrlruzXzee82sK6wMFHZdv4iOrXJtAgwt7zkdNqahKTfP6TPZvhxxJtRWmqmrnw7M443KVvPyM99p6+WaU755Z+WZuXCiez/u6YwwGY8a2smctZEckID4vF8rfNgWu0BdXeDbCr6mQm81Qg5itlqiM3tJVsgfuLzhDq7AG7d4GPHPjg9ftW6ZWzdPfw="
+      secure: OD0j6xLqn5Wa+byd90B0bbqYayvDnrgUG8jXkiVcuEdQt0uUe/8CiTP74oWwajO+Zk5wvole9IO3XiuTqfPGn2p5nBs9dLRUG5IHlCeYbEbuQiDYy57Xq30S1a77Aof9RynFXZyHOB4gsnpkpS4Spt+ggB5M+AKgcM3hHCnLoqKMh4A95bRufO4oqVrKWxmCiLxIXNHC+aPV3TVG7vvlMlVX3VnqvdhYn1sJCq64h8yVpoh+5b8CLCaCPOgFRb71+B3bRhK19485qC3JQJZxoFzHAW+OKEx/kJk8Xq4tE9mv2KFqrU6TN8tX0jiu/Wj/0i5xhTKb262Bo/Rp023B/kQf+x//RQlCAcVRtIvPG1pnD5FtAYgXU6fTJLyQPaTzsY4mB0EUYXs36dUevW1xBaePXOg7R0h+0SNVZlcW5axJQ1AVcya75O/t4KHqtsnCblYzu7WRrZWLdMOCerwHnRBwkjhfJiEDxj63Kn6bobqAx0UYLOswd4tfYOhMuagnJMsKdFyn/rNNwzf23CIVfRK/qh0q+eiKt7rzSMc0FtEig+zyTfZ9Opwhu8+oXGxI9FDF5juHoxQlbf8SAzex/7Q94mxRptRIMI6dnvJlD5EU6vx+eAxfVhXaRUgdX08fBg6t9FVgkcBwV0/B27CU8Lmxu9C+krax7EVX3WkaokE=
 
 install:
-  - dotnet restore
+- dotnet restore
 
 script:
-  - dotnet build
-  - dotnet test Collab.Tests/Collab.Tests.csproj
-  - sonar-scanner
+- dotnet build
+- dotnet test Collab.Tests/Collab.Tests.csproj
+- sonar-scanner
