@@ -17,3 +17,6 @@ A web application designed to help organize collaborations and chorus battles by
 - [Git](https://git-scm.com) - Version Control System
 - [TravisCI](https://travis-ci.org) - Continuous Integration
 - [SonarCloud](https://about.sonarcloud.io) - Code Analysis
+- [Vagrant](https://www.vagrantup.com) - Virtual Machine for isolated development environment
+- [VirtualBox](https://www.virtualbox.org) - Vagrant provider
+- [Docker](https://www.docker.com/community-edition) - Containerization

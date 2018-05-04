@@ -292,3 +292,6 @@ __pycache__/
 
 # Ignore environment-specific configurations
 appsettings.Development.json
+
+# Ignore extra vagrant files
+.vagrant/
