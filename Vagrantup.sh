@@ -2,8 +2,7 @@
 
 # Docker version
 VERSION_DOCKER_CE=18.03.0~ce-0~ubuntu
-
-# PACKAGE - DEFINITION
+VERSION_DOCKER_COMPOSE=1.21.2
 
 # Set up docker repository
 # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
@@ -17,8 +16,6 @@ sudo apt-get install \
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-sudo apt-key fingerprint 0EBFCD88
-
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
@@ -26,5 +23,9 @@ sudo add-apt-repository \
 
 # Install Docker Community Edition
 sudo apt-get update
-sudo apt-get install -y docker-ce=$VERSION_DOCKER_CE
+sudo apt-get install -y \
+    docker-ce=$VERSION_DOCKER_CE
 
+# Install Docker Compose
+curl -L https://github.com/docker/compose/releases/download/$VERSION_DOCKER_COMPOSE/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
