@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Collab.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
 using Collab.DAL;
 using Collab.BLL;
+using Collab.Models;
+using Collab.Models.Context;
 
 namespace Collab
 {
@@ -56,9 +57,6 @@ namespace Collab
             {
                 c.SwaggerDoc(SwaggerVersion, new Info { Title = "Youtaite Collab API Dev", Version = SwaggerVersion });
             });
-
-            services.AddDbContext<CollabContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("CollabDb")));
 
             services.AddTransient<IRepository<User>, UserRepository>();
         }
