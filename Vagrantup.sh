@@ -27,5 +27,12 @@ sudo apt-get install -y \
     docker-ce=$VERSION_DOCKER_CE
 
 # Install Docker Compose
+# https://github.com/docker/compose/releases
 curl -L https://github.com/docker/compose/releases/download/$VERSION_DOCKER_COMPOSE/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
+
+# Give Docker permission
+# https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+newgrp docker
