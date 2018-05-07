@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using Collab.DAL;
 using Collab.Models;
+using Collab.Models.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Collab.BLL
 {
@@ -15,29 +18,65 @@ namespace Collab.BLL
             this.db = db;
         }
 
-        public Task CreateAsync(User entity)
+        public async Task CreateAsync(User user)
         {
-            throw new NotImplementedException();
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+            await db.AddAsync(user);
         }
 
-        public Task<bool> DeleteAsync(Guid id)
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await db.Users.AsNoTracking().ToListAsync();
         }
 
-        public Task<IEnumerable<User>> GetAllAsync()
+        public async Task<User> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
         }
 
-        public Task<User> GetByIdAsync(Guid id)
+        public async Task<bool> UpdateAsync(Guid id, User updatedUser)
         {
-            throw new NotImplementedException();
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            if (updatedUser == null)
+            {
+                throw new ArgumentNullException(nameof(updatedUser));
+            }
+
+            User userToBeUpdated = await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
+            if (userToBeUpdated == null)
+            {
+                throw new KeyNotFoundException($"A user with guid, {id}, could not be found.");
+            }
+
+            db.Entry(updatedUser).State = EntityState.Modified;
+            int rowsAffected = await db.SaveChangesAsync();
+
+            return rowsAffected > 0;
         }
 
-        public Task<bool> UpdateAsync(Guid id, User entity)
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            User userToBeDeleted = await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
+            if (userToBeDeleted == null)
+            {
+                throw new KeyNotFoundException($"A user with guid, {id}, could not be found.");
+            }
+
+            db.Users.Remove(userToBeDeleted);
+            int rowsAffected = await db.SaveChangesAsync();
+
+            return rowsAffected > 0;
         }
     }
 }
