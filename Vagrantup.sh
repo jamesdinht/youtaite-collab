@@ -34,5 +34,5 @@ chmod +x /usr/local/bin/docker-compose
 # Give Docker permission
 # https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo
 sudo groupadd docker
-sudo gpasswd -a $USER docker
+sudo usermod -aG docker vagrant
 newgrp docker
