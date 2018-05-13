@@ -8,9 +8,9 @@ namespace Collab.DAL
     public interface IRepository<TEntity> where TEntity : BaseModel
     {
         Task CreateAsync(TEntity entity);
-        Task<bool> UpdateAsync(Guid id, TEntity entity);
-        Task<bool> DeleteAsync(Guid id);
+        Task<bool> UpdateAsync(int id, TEntity entity);
+        Task<bool> DeleteAsync(int id);
         Task<IEnumerable<TEntity>> GetAllAsync();
-        Task<TEntity> GetByIdAsync(Guid id);
+        Task<TEntity> GetByIdAsync(int id);
     }
 }

@@ -8,8 +8,8 @@ namespace Collab.Models.Config
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.Property(u => u.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("UserId");
+                .HasColumnName("UserId")
+                .UseSqlServerIdentityColumn();
         }
     }
 }

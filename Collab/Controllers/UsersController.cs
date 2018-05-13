@@ -24,22 +24,23 @@ namespace Collab.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public async Task<IActionResult> Get()
         {
-            return Ok(await db.GetAllAsync());
+            IEnumerable<User> users = await db.GetAllAsync();
+            return Ok(users);
         }
 
         // GET api/users/5
         [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(User))]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Get(Guid id)
+        public async Task<IActionResult> Get(int id)
         {
             User retrievedUser = await db.GetByIdAsync(id);
-            if (db.GetByIdAsync(id) == null)
+            if (retrievedUser == null)
             {
                 return NotFound();
             } 
 
-            return Ok(await db.GetByIdAsync(id));
+            return Ok(retrievedUser);
         }
 
         // POST api/users
@@ -52,16 +53,27 @@ namespace Collab.Controllers
             {
                 return BadRequest(ModelState);
             }
-            await db.CreateAsync(user);
-            return CreatedAtAction(nameof(db.GetByIdAsync), new { id = user.Id }, user);
+            else
+            {
+                if (user == null)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    await db.CreateAsync(user);
+                    return CreatedAtAction("Get", new { id = user.Id }, user);
+                }
+            }
+            
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        [ProducesResponseType(200, Type = typeof(bool))]
+        [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Put(Guid id, [FromBody]User user)
+        public async Task<IActionResult> Put(int id, [FromBody]User user)
         {
             User userToBeUpdated = await db.GetByIdAsync(id);
             if (userToBeUpdated == null)
@@ -71,7 +83,7 @@ namespace Collab.Controllers
             
             if (await db.UpdateAsync(id, user))
             {
-                return Ok(true);
+                return NoContent();
             } else
             {
                 return BadRequest();
@@ -81,16 +93,24 @@ namespace Collab.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        [ProducesResponseType(200, Type = typeof(bool))]
+        [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Delete(Guid id)
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> Delete(int id)
         {
             User userToBeDeleted = await db.GetByIdAsync(id);
             if (userToBeDeleted == null)
             {
+                return NotFound();
+            }
+            if (await db.DeleteAsync(id))
+            {
+                return NoContent();
+            }
+            else
+            {
                 return BadRequest();
             }
-            return Ok(await db.DeleteAsync(id));
         }        
     }
 }

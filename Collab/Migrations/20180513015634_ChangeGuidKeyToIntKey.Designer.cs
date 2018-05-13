@@ -11,9 +11,10 @@ using System;
 namespace Collab.Migrations
 {
     [DbContext(typeof(CollabContext))]
-    partial class CollabContextModelSnapshot : ModelSnapshot
+    [Migration("20180513015634_ChangeGuidKeyToIntKey")]
+    partial class ChangeGuidKeyToIntKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

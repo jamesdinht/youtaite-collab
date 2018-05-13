@@ -32,17 +32,13 @@ namespace Collab.BLL
             return await db.Users.AsNoTracking().ToListAsync();
         }
 
-        public async Task<User> GetByIdAsync(Guid id)
+        public async Task<User> GetByIdAsync(int id)
         {
             return await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
         }
 
-        public async Task<bool> UpdateAsync(Guid id, User updatedUser)
+        public async Task<bool> UpdateAsync(int id, User updatedUser)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
             if (updatedUser == null)
             {
                 throw new ArgumentNullException(nameof(updatedUser));
@@ -51,7 +47,7 @@ namespace Collab.BLL
             User userToBeUpdated = await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
             if (userToBeUpdated == null)
             {
-                throw new KeyNotFoundException($"A user with guid, {id}, could not be found.");
+                throw new KeyNotFoundException($"A user with id: {id} could not be found.");
             }
 
             db.Entry(updatedUser).State = EntityState.Modified;
@@ -60,17 +56,12 @@ namespace Collab.BLL
             return rowsAffected > 0;
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
             User userToBeDeleted = await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
             if (userToBeDeleted == null)
             {
-                throw new KeyNotFoundException($"A user with guid, {id}, could not be found.");
+                throw new KeyNotFoundException($"A user with id: {id}, could not be found.");
             }
 
             db.Users.Remove(userToBeDeleted);
