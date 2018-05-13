@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collab", "Collab\Collab.csproj", "{F1054F13-13BD-4F37-BA90-8B8BDD18E91D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collab", "Collab.API\Collab.API.csproj", "{F1054F13-13BD-4F37-BA90-8B8BDD18E91D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collab.Tests", "Collab.Tests\Collab.Tests.csproj", "{4069786C-AEB5-4E0A-9911-724C75A102AA}"
 EndProject
