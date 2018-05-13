@@ -13,6 +13,6 @@ install:
 - dotnet restore
 
 script:
-- dotnet build
+- dotnet build --no-restore
 - dotnet test Collab.Tests/Collab.Tests.csproj
 - sonar-scanner
