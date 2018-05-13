@@ -9,12 +9,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cors;
 
 using Swashbuckle.AspNetCore.Swagger;
 using Collab.DAL;
 using Collab.BLL;
 using Collab.Models;
 using Collab.Models.Context;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 
 namespace Collab
 {
@@ -29,10 +32,14 @@ namespace Collab
 
         private const string SwaggerVersion = "v1";
 
+        private const string localdevURL = "http://localhost:4200";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddCors();
 
             // Register Swagger generator
             services.AddSwaggerGen(c => 
@@ -48,8 +55,24 @@ namespace Collab
 
         // For Development environment
         public void ConfigureDevelopmentServices(IServiceCollection services) {
-            services.AddMvc();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigins",
+                    builder =>
+                    {
+                        builder.WithOrigins(localdevURL)
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    }
+                );
+            });
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigins"));
+            });
 
+            services.AddMvc();
+            
             services.AddDbContext<CollabContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("CollabDb")));
 
@@ -68,9 +91,10 @@ namespace Collab
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
+            app.UseCors("AllowSpecificOrigins");
             app.UseMvc();
-
+            
             // Enable middleware to serve generated Swagger and Swagger UI
             app.UseSwagger();
 
