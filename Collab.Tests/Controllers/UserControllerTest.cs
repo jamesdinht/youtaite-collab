@@ -1,9 +1,9 @@
 using System;
 using Xunit;
 using Moq;
-using Collab.Models;
-using Collab.DAL;
-using Collab.Controllers;
+using Collab.API.Models;
+using Collab.API.DAL;
+using Collab.API.Controllers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 

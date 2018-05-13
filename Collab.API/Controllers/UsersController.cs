@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Collab.DAL;
-using Collab.Models;
+using Collab.API.DAL;
+using Collab.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Collab.Controllers
+namespace Collab.API.Controllers
 {
     [Route("api/[controller]")]
     public class UsersController : Controller

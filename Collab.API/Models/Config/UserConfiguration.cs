@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Collab.Models.Config
+namespace Collab.API.Models.Config
 {
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {

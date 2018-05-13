@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using Collab.Models.Context;
+using Collab.API.Models.Context;
 
-namespace Collab.Models.Data
+namespace Collab.API.Models.Data
 {
     public class DbInitializer
     {

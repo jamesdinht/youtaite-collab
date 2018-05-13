@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Collab.Migrations
+namespace Collab.API.Migrations
 {
     public partial class InitialCreate : Migration
     {

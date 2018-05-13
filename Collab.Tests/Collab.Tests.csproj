@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Collab\Collab.csproj" />
+    <ProjectReference Include="..\Collab.API\Collab.API.csproj" />
   </ItemGroup>
 
 </Project>

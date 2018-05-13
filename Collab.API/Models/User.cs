@@ -1,6 +1,6 @@
 using System;
 
-namespace Collab.Models
+namespace Collab.API.Models
 {
     public class User : BaseModel
     {

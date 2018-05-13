@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using Collab.DAL;
-using Collab.Models;
-using Collab.Models.Context;
+using Collab.API.DAL;
+using Collab.API.Models;
+using Collab.API.Models.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Collab.BLL
+namespace Collab.API.BLL
 {
     public class UserRepository : IRepository<User>
     {

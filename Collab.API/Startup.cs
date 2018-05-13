@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Cors;
 
 using Swashbuckle.AspNetCore.Swagger;
-using Collab.DAL;
-using Collab.BLL;
-using Collab.Models;
-using Collab.Models.Context;
+using Collab.API.DAL;
+using Collab.API.BLL;
+using Collab.API.Models;
+using Collab.API.Models.Context;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 
-namespace Collab
+namespace Collab.API
 {
     public class Startup
     {
