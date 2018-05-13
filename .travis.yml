@@ -1,18 +1,46 @@
-language: csharp
+sudo: required
 dist: trusty
-mono: none
-dotnet: 2.0.0
 
+matrix:
+  include:
+    - language: csharp
+      mono: none
+      dotnet: 2.0.0
+      before_script:
+
+      install:
+        - dotnet restore
+      script:
+      - dotnet build --no-restore
+      - dotnet test Collab.Tests/Collab.Tests.csproj
+
+    - language: node_js
+      node_js:
+        - "8.9.4"
+      apt:
+        sources:
+          - google-chrome
+        packages:
+          - google-chrome-stable
+      before_install:
+        - npm i -g npm@5.6.0
+      before_script:
+        - cd Collab.Interface
+        - npm install -g angular-cli@5.0.0
+        - npm install -g karma
+        - npm install
+      cache:
+        directories:
+          - "node_modules"
+      script:
+        - ng build
+        - ng test
+      
 addons:
   sonarcloud:
     organization: youtaite-collab
     token:
       secure: OD0j6xLqn5Wa+byd90B0bbqYayvDnrgUG8jXkiVcuEdQt0uUe/8CiTP74oWwajO+Zk5wvole9IO3XiuTqfPGn2p5nBs9dLRUG5IHlCeYbEbuQiDYy57Xq30S1a77Aof9RynFXZyHOB4gsnpkpS4Spt+ggB5M+AKgcM3hHCnLoqKMh4A95bRufO4oqVrKWxmCiLxIXNHC+aPV3TVG7vvlMlVX3VnqvdhYn1sJCq64h8yVpoh+5b8CLCaCPOgFRb71+B3bRhK19485qC3JQJZxoFzHAW+OKEx/kJk8Xq4tE9mv2KFqrU6TN8tX0jiu/Wj/0i5xhTKb262Bo/Rp023B/kQf+x//RQlCAcVRtIvPG1pnD5FtAYgXU6fTJLyQPaTzsY4mB0EUYXs36dUevW1xBaePXOg7R0h+0SNVZlcW5axJQ1AVcya75O/t4KHqtsnCblYzu7WRrZWLdMOCerwHnRBwkjhfJiEDxj63Kn6bobqAx0UYLOswd4tfYOhMuagnJMsKdFyn/rNNwzf23CIVfRK/qh0q+eiKt7rzSMc0FtEig+zyTfZ9Opwhu8+oXGxI9FDF5juHoxQlbf8SAzex/7Q94mxRptRIMI6dnvJlD5EU6vx+eAxfVhXaRUgdX08fBg6t9FVgkcBwV0/B27CU8Lmxu9C+krax7EVX3WkaokE=
 
-install:
-- dotnet restore
-
 script:
-- dotnet build --no-restore
-- dotnet test Collab.Tests/Collab.Tests.csproj
-- sonar-scanner
+  - sonar-scanner
