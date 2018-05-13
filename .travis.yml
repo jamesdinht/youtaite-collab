@@ -11,8 +11,8 @@ matrix:
       install:
         - dotnet restore
       script:
-      - dotnet build --no-restore
-      - dotnet test Collab.Tests/Collab.Tests.csproj
+        - dotnet build --no-restore
+        - dotnet test Collab.Tests/Collab.Tests.csproj
 
     - language: node_js
       node_js:
@@ -26,7 +26,7 @@ matrix:
         - npm i -g npm@5.6.0
       before_script:
         - cd Collab.Interface
-        - npm install -g angular-cli@5.0.0
+        - npm install -g angular-cli@6.0.1
         - npm install -g karma
         - npm install
       cache:
