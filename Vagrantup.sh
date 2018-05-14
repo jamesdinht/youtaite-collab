@@ -32,7 +32,7 @@ curl -L https://github.com/docker/compose/releases/download/$VERSION_DOCKER_COMP
 chmod +x /usr/local/bin/docker-compose
 
 # Give Docker permission
-# https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo
+# https://docs.docker.com/install/linux/linux-postinstall/ - Manage Docker as a non-root user
 sudo groupadd docker
 sudo usermod -aG docker vagrant
 newgrp docker
