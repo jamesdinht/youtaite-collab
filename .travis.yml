@@ -35,3 +35,4 @@ matrix:
       script:
         - ng build
         - ng test
+        - sonar-scanner
