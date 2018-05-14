@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from 'rxjs';
-import { environment } from '../environments/environment';
-import { User } from "./users/user";
 import { catchError } from "rxjs/operators";
+import { environment } from '../../environments/environment';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,6 @@ export class UserService {
       );
   }
 
-  
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // Log the error
