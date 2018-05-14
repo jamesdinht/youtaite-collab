@@ -20,6 +20,7 @@ matrix:
       script:
         - dotnet build --no-restore
         - dotnet test Collab.Tests/Collab.Tests.csproj
+        - sonar-scanner
 
     - language: node_js
       node_js:
@@ -34,6 +35,3 @@ matrix:
       script:
         - ng build
         - ng test
-
-script:
-  - sonar-scanner
