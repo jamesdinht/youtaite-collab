@@ -19,6 +19,8 @@ A web application designed to help organize collaborations and chorus battles by
     - [HTML, CSS, JavaScript](https://www.w3schools.com) - Web Development languages
     - [TypeScript](https://www.typescriptlang.org) - JavaScript transcompiler used for Angular
     - [Angular 5](https://angular.io) - Web development framework
+    - [Jasmine](https://jasmine.github.io) - JavaScript testing
+    - [Karma](https://karma-runner.github.io/2.0/index.html) - JavaScript test runner
 - ## DevOps
     - [Git](https://git-scm.com) - Version Control System
     - [TravisCI](https://travis-ci.org) - Continuous Integration
