@@ -17,20 +17,20 @@ namespace Collab.API.Models.Data
 
             var users = new User[]
             {
-                new User() { Id = 1, Nickname = "Abby" },
-                new User() { Id = 2, Nickname = "James" },
-                new User() { Id = 3, Nickname = "Eri" },
-                new User() { Id = 4, Nickname = "Gerald" },
-                new User() { Id = 5, Nickname = "Theo" },
-                new User() { Id = 6, Nickname = "Woozy" },
-                new User() { Id = 7, Nickname = "Kiera" },
-                new User() { Id = 8, Nickname = "Saru" },
-                new User() { Id = 9, Nickname = "Kyu" },
-                new User() { Id = 10, Nickname = "Mar" },
-                new User() { Id = 11, Nickname = "Java" },
-                new User() { Id = 12, Nickname = "Enigma" },
-                new User() { Id = 13, Nickname = "Cera" },
-                new User() { Id = 14, Nickname = "Mille" }
+                new User() { Nickname = "Abby" },
+                new User() { Nickname = "James" },
+                new User() { Nickname = "Eri" },
+                new User() { Nickname = "Gerald" },
+                new User() { Nickname = "Theo" },
+                new User() { Nickname = "Woozy" },
+                new User() { Nickname = "Kiera" },
+                new User() { Nickname = "Saru" },
+                new User() { Nickname = "Kyu" },
+                new User() { Nickname = "Mar" },
+                new User() { Nickname = "Java" },
+                new User() { Nickname = "Enigma" },
+                new User() { Nickname = "Cera" },
+                new User() { Nickname = "Mille" }
             };
 
             foreach (User u in users)
