@@ -41,7 +41,11 @@ Want to contribute? Read [here](CONTRIBUTING.md).
   - `docker swarm init`
 - Run the localdeploy script to build and run the application on localhost
   - `bash localdeploy.sh`
-- Alternatively, open `docker-compose.override.dev.yml`. The comments contain the individual docker commands to run
+  - Alternatively, open `docker-compose.override.dev.yml`. The comments contain the individual docker commands to run
+- Once the services are deployed, open your browser and navigate to `localhost:9100`
+  - If the page loads, Congratulations! You have successfully built and deployed this application locally!
+  - If not, feel free to submit an issue or email me at jamesdinht@gmail.com for questions
+    - If emailing: Use `Youtaite-Collab Issue/Question/Comment <current-date>` as the subject line
 - Once done, use the following command to destroy the VM to release resources
   - `vagrant destroy`
     - Will prompt for confirmation, answer with `y`
