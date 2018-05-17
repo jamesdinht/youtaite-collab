@@ -8,10 +8,9 @@ Site: TBA
 
 A web application designed to help organize collaborations and chorus battles by offering a specialized UI for Youtaite projects.
 
->As a fan of Chorus Battles on Youtube, I decided to try and build an application that would bring the power of Software Management products, like Github, Trello, and JIRA, to the Youtaite community.
-<br>
-<br>
-I hope to build an application that will help organize collaborations more easily and allow involved parties to see progress at a glance.
+>As a fan of Chorus Battles on Youtube, I decided to try and build an application that would bring the power of Software Management products, like Github, Trello, and JIRA, to the Youtaite community. 
+>
+>I hope to build an application that will help organize collaborations more easily and allow involved parties to see progress at a glance.
 
 ## Contributing
 Want to contribute? Read [here](CONTRIBUTING.md).
