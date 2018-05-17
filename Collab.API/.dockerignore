@@ -1,0 +1,18 @@
+# exclude - filepath
+**/.vs
+**/.vscode
+**/bin
+**/obj
+
+# exclude - filename
+**/*.user
+**/Properties/launchSettings.json
+**/appsettings*
+
+!**/appsettings.json
+
+# DIRECTORY - ROOT
+
+# exclude - filename
+.dockerignore
+*.dockerfile

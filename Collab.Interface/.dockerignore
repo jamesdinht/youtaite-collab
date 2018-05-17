@@ -1,0 +1,15 @@
+# DIRECTORY - ALL
+
+# exclude - filepath
+**/.vs
+**/.vscode
+
+# DIRECTORY - ROOT
+
+# exclude - filepath
+dist
+node_modules
+
+# exclude - filename
+.dockerignore
+*.dockerfile

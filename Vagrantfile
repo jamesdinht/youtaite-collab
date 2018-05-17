@@ -7,7 +7,8 @@ Vagrant.configure("2") do |config|
   config.vm.box_version = "20180503.0.0"
 
   # DEFINITION - NETWORK
-  config.vm.network "forwarded_port", guest: 6000, host: 6000, host_ip: "127.0.0.1" # web api
+  config.vm.network "forwarded_port", guest: 9000, host: 9000, host_ip: "127.0.0.1" # web api
+  config.vm.network "forwarded_port", guest: 9100, host: 9100, host_ip: "127.0.0.1" # web interface
 
   # DEFINITION - PROVIDER
   config.vm.provider "virtualbox" do |vb|

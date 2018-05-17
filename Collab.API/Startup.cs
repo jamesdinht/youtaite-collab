@@ -32,7 +32,7 @@ namespace Collab.API
 
         private const string SwaggerVersion = "v1";
 
-        private const string localdevURL = "http://localhost:4200";
+        private const string CorsPolicy = "AllowAllOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -57,10 +57,10 @@ namespace Collab.API
         public void ConfigureDevelopmentServices(IServiceCollection services) {
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowSpecificOrigins",
+                options.AddPolicy(CorsPolicy,
                     builder =>
                     {
-                        builder.WithOrigins(localdevURL)
+                        builder.AllowAnyOrigin()
                             .AllowAnyMethod()
                             .AllowAnyHeader();
                     }
@@ -68,7 +68,7 @@ namespace Collab.API
             });
             services.Configure<MvcOptions>(options =>
             {
-                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigins"));
+                options.Filters.Add(new CorsAuthorizationFilterFactory(CorsPolicy));
             });
 
             services.AddMvc();
@@ -92,7 +92,7 @@ namespace Collab.API
                 app.UseDeveloperExceptionPage();
             }
             
-            app.UseCors("AllowSpecificOrigins");
+            app.UseCors(CorsPolicy);
             app.UseMvc();
             
             // Enable middleware to serve generated Swagger and Swagger UI

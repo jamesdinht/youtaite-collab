@@ -1,0 +1,53 @@
+# Use docker to build the application for production from Vagrant
+#
+# To connect to Vagrant box:
+#   vagrant ssh
+# 
+# Once in vagrant:
+#   cd /vagrant
+#
+# To build:
+#   docker-compose build
+#
+# If not in a swarm:
+#   docker swarm init
+#
+# To deploy:   
+#   docker stack deploy -c docker-compose.yml collab
+#   
+# To un-deploy:
+#   docker stack rm collab
+# 
+# check logs:
+#   docker stack ps collab  # check the ID for the service you want to look at
+#   docker service logs <service-ID>
+
+version: '3.6'
+
+services:
+  webapi:
+    image: collab-webapi:0.1.0
+    build:
+      context: Collab.API
+      dockerfile: Dockerfile
+    ports: 
+      - "9000:80"
+    deploy:
+      replicas: 1
+    networks:
+      - collabnetwork
+
+  interface:
+    build:
+      context: Collab.Interface
+      dockerfile: Dockerfile
+    image: collab-interface:0.1.0
+    ports:
+      - "9100:4200"
+    deploy:
+      replicas: 1
+    networks:
+      - collabnetwork
+
+networks:
+  collabnetwork:

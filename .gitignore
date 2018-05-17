@@ -291,7 +291,7 @@ __pycache__/
 *.vscode
 
 # Ignore environment-specific configurations
-appsettings.Development.json
+appsettings.*.json
 
 # Ignore extra vagrant files
 .vagrant/
