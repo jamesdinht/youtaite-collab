@@ -37,24 +37,6 @@ namespace Collab.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-
-            services.AddCors();
-
-            // Register Swagger generator
-            services.AddSwaggerGen(c => 
-            {
-                c.SwaggerDoc(SwaggerVersion, new Info { Title = "Youtaite Collab API", Version = SwaggerVersion });
-            });
-
-            services.AddDbContext<CollabContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("CollabDb")));
-
-            services.AddTransient<IRepository<User>, UserRepository>();
-        }
-
-        // For Development environment
-        public void ConfigureDevelopmentServices(IServiceCollection services) {
             services.AddCors(options =>
             {
                 options.AddPolicy(CorsPolicy,
@@ -72,14 +54,15 @@ namespace Collab.API
             });
 
             services.AddMvc();
-            
-            services.AddDbContext<CollabContext>(options => 
-                options.UseSqlServer(Configuration.GetConnectionString("CollabDb")));
 
-            services.AddSwaggerGen(c =>
+            // Register Swagger generator
+            services.AddSwaggerGen(c => 
             {
-                c.SwaggerDoc(SwaggerVersion, new Info { Title = "Youtaite Collab API Dev", Version = SwaggerVersion });
+                c.SwaggerDoc(SwaggerVersion, new Info { Title = "Youtaite Collab API", Version = SwaggerVersion });
             });
+
+            services.AddDbContext<CollabContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("CollabDb")));
 
             services.AddTransient<IRepository<User>, UserRepository>();
         }
