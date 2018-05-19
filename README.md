@@ -51,7 +51,7 @@ Want to contribute? Read [here](CONTRIBUTING.md).
     - Alternatively, `vagrant destroy -f` to ignore the confirmation
 
 ## Wiki
-Coming soon.
+Visit the wiki [here](https://github.com/jamesdinht/youtaite-collab/wiki).
 
 ## Technologies
 - ### Backend
