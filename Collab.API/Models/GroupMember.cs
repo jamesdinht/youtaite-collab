@@ -1,6 +1,6 @@
 namespace Collab.API.Models
 {
-    public class Collaboration : BaseModel
+    public class GroupMember : BaseModel
     {
         // Foreign key User
         public int UserId { get; set; }

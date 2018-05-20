@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Collab.API.Models
@@ -6,9 +7,6 @@ namespace Collab.API.Models
     {
         public string Name { get; set; }
 
-        public string ProjectName { get; set; }
-
-        public int CollaborationId { get; set; }
-        public Collaboration Collaboration { get; set; }
+        public ICollection<GroupMember> Users { get; set; }
     }
 }

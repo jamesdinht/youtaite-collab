@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Collab.API.Models.Config
 {
-    public class CollaborationConfiguration : IEntityTypeConfiguration<Collaboration>
+    public class GroupMemberConfiguration : IEntityTypeConfiguration<GroupMember>
     {
-        public void Configure(EntityTypeBuilder<Collaboration> builder)
+        public void Configure(EntityTypeBuilder<GroupMember> builder)
         {
             builder.ToTable("Collaborations");
 
