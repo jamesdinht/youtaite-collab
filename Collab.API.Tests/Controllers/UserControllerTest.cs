@@ -7,7 +7,7 @@ using Collab.API.Controllers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Collab.Tests.Controllers
+namespace Collab.API.Tests.Controllers
 {
     public class UserControllerTest : IDisposable
     {
