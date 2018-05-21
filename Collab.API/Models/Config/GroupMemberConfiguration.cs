@@ -10,9 +10,15 @@ namespace Collab.API.Models.Config
             builder.ToTable("GroupMembers")
                 .HasKey(gm => new { gm.GroupId, gm.UserId });
 
-            builder.Property(gm => gm.Id)
-                .HasColumnName("GroupMemberId")
-                .ValueGeneratedOnAdd();
+            builder.Ignore(gm => gm.Id);
+
+            builder.HasOne(gm => gm.User)
+                .WithMany(u => u.Groups)
+                .HasForeignKey(gm => gm.UserId);
+
+            builder.HasOne(gm => gm.Group)
+                .WithMany(g => g.Users)
+                .HasForeignKey(gm => gm.GroupId);
         }
     }
 }
