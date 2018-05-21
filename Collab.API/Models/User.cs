@@ -7,6 +7,6 @@ namespace Collab.API.Models
     {
         public string Nickname { get; set; }
 
-        public ICollection<GroupMember> Groups { get; set; }
+        public virtual ICollection<GroupMember> Groups { get; set; }
     }
 }
