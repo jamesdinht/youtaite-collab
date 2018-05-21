@@ -13,6 +13,11 @@ namespace Collab.API.Models.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
            modelBuilder.ApplyConfiguration(new UserConfiguration());
+           modelBuilder.ApplyConfiguration(new GroupConfiguration());
+           modelBuilder.ApplyConfiguration(new ProjectConfiguration());
+           modelBuilder.ApplyConfiguration(new RoleConfiguration());
+           modelBuilder.ApplyConfiguration(new GroupMemberConfiguration());
+           modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
         }
     }
 }
