@@ -15,6 +15,10 @@ namespace Collab.API.Models.Config
 
             builder.Property(p => p.ProjectName)
                 .IsRequired();
+
+            builder.HasOne(p => p.Group)
+                .WithOne(g => g.Project)
+                .HasForeignKey<Group>(g => g.ProjectId);
         }
     }
 }

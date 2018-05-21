@@ -4,8 +4,6 @@ namespace Collab.API.Models
     {
         public string ProjectName { get; set; }
 
-        public int GroupId { get; set; }
-
         public virtual Group Group { get; set; }
     }
 }
