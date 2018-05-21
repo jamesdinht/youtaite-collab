@@ -22,7 +22,7 @@
 #   docker stack ps collab  # check the ID for the service you want to look at
 #   docker service logs <service-ID>
 
-version: '3.6'
+version: '3'
 
 services:
   webapi:
