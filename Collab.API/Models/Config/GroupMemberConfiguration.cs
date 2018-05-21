@@ -7,11 +7,12 @@ namespace Collab.API.Models.Config
     {
         public void Configure(EntityTypeBuilder<GroupMember> builder)
         {
-            builder.ToTable("Collaborations");
+            builder.ToTable("GroupMembers")
+                .HasKey(gm => new { gm.GroupId, gm.UserId });
 
-            builder.Property(c => c.Id)
-                .HasColumnName("CollaborationId")
-                .UseSqlServerIdentityColumn();
+            builder.Property(gm => gm.Id)
+                .HasColumnName("GroupMemberId")
+                .ValueGeneratedOnAdd();
         }
     }
 }
