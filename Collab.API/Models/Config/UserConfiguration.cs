@@ -7,6 +7,9 @@ namespace Collab.API.Models.Config
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.ToTable("Users")
+                .HasMany(u => u.Groups);
+
             builder.Property(u => u.Id)
                 .HasColumnName("UserId")
                 .UseSqlServerIdentityColumn();
