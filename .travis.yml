@@ -19,7 +19,7 @@ matrix:
         - dotnet restore
       script:
         - dotnet build --no-restore
-        - dotnet test Collab.Tests/Collab.Tests.csproj
+        - dotnet test Collab.API.Tests/Collab.API.Tests.csproj
         - sonar-scanner
 
     - language: node_js
