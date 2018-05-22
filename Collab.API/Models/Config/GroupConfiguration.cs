@@ -7,7 +7,8 @@ namespace Collab.API.Models.Config
     {
         public void Configure(EntityTypeBuilder<Group> builder)
         {
-            builder.ToTable("Groups");
+            builder.ToTable("Groups")
+                .HasMany(g => g.Users);
 
             builder.Property(g => g.Id)
                 .HasColumnName("GroupId")

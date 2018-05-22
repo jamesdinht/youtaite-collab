@@ -10,6 +10,8 @@ namespace Collab.API.Models.Config
             builder.ToTable("Users")
                 .HasMany(u => u.Groups);
 
+            builder.HasMany(u => u.Roles);
+
             builder.Property(u => u.Id)
                 .HasColumnName("UserId")
                 .UseSqlServerIdentityColumn();
