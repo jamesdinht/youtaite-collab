@@ -29,8 +29,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: "apt-get update"
 
   # Provision Docker and Docker-Compose for Vagrant box
-  config.vm.provision :docker
-  config.vm.provision :docker_compose
+  config.vm.provision "docker"
+  config.vm.provision "docker_compose"
 
   # DEFINITION - SYNCED FOLDER
   config.vm.synced_folder ".", "/vagrant"
