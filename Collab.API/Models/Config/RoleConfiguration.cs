@@ -1,3 +1,4 @@
+using Collab.API.Models.Config.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -19,6 +20,9 @@ namespace Collab.API.Models.Config
             builder.Property(r => r.RoleName)
                 .HasColumnName("Role")
                 .IsRequired();
+
+            builder.AddDateCreatedColumn();
+            builder.AddLastUpdatedColumn();
         }
     }
 }

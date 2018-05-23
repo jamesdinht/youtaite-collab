@@ -1,3 +1,4 @@
+using Collab.API.Models.Config.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -19,6 +20,9 @@ namespace Collab.API.Models.Config
             builder.HasOne(ur => ur.Role)
                 .WithMany(r => r.UserRoles)
                 .HasForeignKey(ur => ur.RoleId);
+
+            builder.AddDateCreatedColumn();
+            builder.AddLastUpdatedColumn();
         }
     }
 }

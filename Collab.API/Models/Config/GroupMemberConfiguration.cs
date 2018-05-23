@@ -1,3 +1,4 @@
+using Collab.API.Models.Config.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -19,6 +20,9 @@ namespace Collab.API.Models.Config
             builder.HasOne(gm => gm.Group)
                 .WithMany(g => g.Users)
                 .HasForeignKey(gm => gm.GroupId);
+
+            builder.AddDateCreatedColumn();
+            builder.AddLastUpdatedColumn();
         }
     }
 }
