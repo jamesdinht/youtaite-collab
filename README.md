@@ -1,6 +1,6 @@
 # Current Status - dev branch
 
-[![Build Status](https://travis-ci.org/jamesdinht/youtaite-collab.svg?branch=dev)](https://travis-ci.org/jamesdinht/youtaite-collab) [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=youtaite-collab&metric=alert_status)](https://sonarcloud.io/api/project_badges/measure?project=youtaite-collab&metric=alert_status)
+[![Build Status](https://travis-ci.org/jamesdinht/youtaite-collab.svg?branch=dev)](https://travis-ci.org/jamesdinht/youtaite-collab)
 
 ## Youtaite Collab Tool
 
