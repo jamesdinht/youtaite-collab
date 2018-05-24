@@ -72,6 +72,5 @@ Visit the wiki [here](https://github.com/jamesdinht/youtaite-collab/wiki).
 
 - ### Other Tools
     - [Visual Studio Code](https://code.visualstudio.com) - IDE
-    - [SonarCloud](https://about.sonarcloud.io) - Code Analysis
     - [Vagrant](https://www.vagrantup.com) - Virtual Machine for isolated development   environment
     - [VirtualBox](https://www.virtualbox.org) - Vagrant provider
