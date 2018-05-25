@@ -8,7 +8,7 @@ namespace Collab.API.Models
         public string Name { get; set; }
 
         public int ProjectId { get; set; }
-        public virtual Project Project { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
 
         public virtual ICollection<GroupMember> Users { get; set; }
     }
