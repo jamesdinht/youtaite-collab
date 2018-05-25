@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Collab.API.Models
 {
+    /// <summary>
+    /// Data entity representing a User of the application.
+    /// </summary>
     public class User : BaseModel
     {
         public string Nickname { get; set; }

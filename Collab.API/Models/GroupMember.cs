@@ -1,5 +1,8 @@
 namespace Collab.API.Models
 {
+    /// <summary>
+    /// Data entity representing the joint table between Group and User.
+    /// </summary>
     public class GroupMember : BaseModel
     {
         // Foreign key User
