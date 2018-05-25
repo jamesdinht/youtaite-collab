@@ -4,7 +4,7 @@ using Collab.API.Models.Context;
 
 namespace Collab.API.Models.Data
 {
-    public class DbInitializer
+    public static class DbInitializer
     {
         public static void Initialize(CollabContext context)
         {
