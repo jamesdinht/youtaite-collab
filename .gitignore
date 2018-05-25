@@ -295,3 +295,6 @@ appsettings.*.json
 
 # Ignore extra vagrant files
 .vagrant/
+
+# Ignore sonarqube files
+.sonarqube

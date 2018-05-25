@@ -78,3 +78,4 @@ Visit the wiki [here](https://github.com/jamesdinht/youtaite-collab/wiki).
   - [Visual Studio Code](https://code.visualstudio.com) - IDE
   - [Vagrant](https://www.vagrantup.com) - Virtual Machine for isolated development   environment
   - [VirtualBox](https://www.virtualbox.org) - Vagrant provider
+  - [SonarQube](https://www.sonarqube.org) - Code Analysis
