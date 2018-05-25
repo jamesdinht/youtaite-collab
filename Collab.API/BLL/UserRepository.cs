@@ -9,6 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Collab.API.BLL
 {
+    /// <summary>
+    /// Concrete implementation for Users.
+    /// </summary>
+    /// <typeparam name="User">A user of the application.</typeparam>
     public class UserRepository : IRepository<User>
     {
         private readonly CollabContext db;
