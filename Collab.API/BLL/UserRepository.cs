@@ -29,6 +29,7 @@ namespace Collab.API.BLL
                 throw new ArgumentNullException(nameof(entity));
             }
             await db.Users.AddAsync(entity);
+            await db.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<User>> GetAllAsync()
