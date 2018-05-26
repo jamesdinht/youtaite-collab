@@ -34,7 +34,7 @@ matrix:
         - ng test
 
     - language: csharp
-      mono: latest
+      mono: none
       before_script:
         - sudo apt-get -qq update
         - wget -O sonar.zip https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/4.2.0.1214/sonar-scanner-msbuild-4.2.0.1214-netcoreapp2.0.zip
