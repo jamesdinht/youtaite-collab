@@ -13,16 +13,13 @@ namespace Collab.API.BLL
     /// Concrete implementation for Users.
     /// </summary>
     /// <typeparam name="User">A user of the application.</typeparam>
-    public class UserRepository : IRepository<User>
+    public class UserRepository : ARepository<User>
     {
-        private readonly CollabContext db;
-
         public UserRepository(CollabContext db)
-        {
-            this.db = db;
-        }
+            : base (db)
+        { }
 
-        public async Task CreateAsync(User entity)
+        public async override Task CreateAsync(User entity)
         {
             if (entity == null)
             {
@@ -32,17 +29,17 @@ namespace Collab.API.BLL
             await db.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public async override Task<IEnumerable<User>> GetAllAsync()
         {
             return await db.Users.AsNoTracking().ToListAsync();
         }
 
-        public async Task<User> GetByIdAsync(int id)
+        public async override Task<User> GetByIdAsync(int id)
         {
             return await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
         }
 
-        public async Task<bool> UpdateAsync(int id, User updatedEntity)
+        public async override Task<bool> UpdateAsync(int id, User updatedEntity)
         {
             if (updatedEntity == null)
             {
@@ -52,7 +49,7 @@ namespace Collab.API.BLL
             User userToBeUpdated = await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
             if (userToBeUpdated == null)
             {
-                throw new KeyNotFoundException($"A user with id: {id} could not be found.");
+                throw new KeyNotFoundException(IncorrectKeyMessage(id, nameof(User)));
             }
 
             db.Entry(updatedEntity).State = EntityState.Modified;
@@ -61,12 +58,12 @@ namespace Collab.API.BLL
             return rowsAffected > 0;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async override Task<bool> DeleteAsync(int id)
         {
             User userToBeDeleted = await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
             if (userToBeDeleted == null)
             {
-                throw new KeyNotFoundException($"A user with id: {id}, could not be found.");
+                throw new KeyNotFoundException(IncorrectKeyMessage(id, nameof(User)));
             }
 
             db.Users.Remove(userToBeDeleted);
