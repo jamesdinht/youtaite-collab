@@ -13,6 +13,7 @@ namespace Collab.API.Tests.Controllers
     {
         private User fakeUser;
         private Mock<IRepository<User>> mockRepo;
+        private UsersController controller;
 
         public UsersControllerTest()
         {
@@ -24,6 +25,7 @@ namespace Collab.API.Tests.Controllers
         {
             fakeUser = null;
             mockRepo = null;
+            controller = null;
         }
 
         [Fact]
@@ -31,7 +33,7 @@ namespace Collab.API.Tests.Controllers
          {
             var fakeUsers = new List<User> { fakeUser };
             mockRepo.Setup(repo => repo.GetAllAsync()).ReturnsAsync(fakeUsers);
-            var controller = new UsersController(mockRepo.Object);
+            controller = new UsersController(mockRepo.Object);
 
             IActionResult actionResult = controller.Get().Result;
             
@@ -51,7 +53,7 @@ namespace Collab.API.Tests.Controllers
         public void Get_ByValidId_ShouldReturnAUser()
         {
             mockRepo.Setup(repo => repo.GetByIdAsync(fakeUser.Id)).ReturnsAsync(fakeUser);
-            var controller = new UsersController(mockRepo.Object);
+            controller = new UsersController(mockRepo.Object);
 
             IActionResult actionResult = controller.Get(fakeUser.Id).Result;
 
@@ -67,7 +69,7 @@ namespace Collab.API.Tests.Controllers
         [Fact]
         public void Get_ByInvalidId_ShouldReturnNotFound()
         {
-            var controller = new UsersController(mockRepo.Object);
+            controller = new UsersController(mockRepo.Object);
 
             IActionResult actionResult = controller.Get(1234).Result;
 
@@ -81,7 +83,7 @@ namespace Collab.API.Tests.Controllers
         [Fact]
         public void Create_ValidUser_ShouldReturnCreatedAt()
         {
-            var controller = new UsersController(mockRepo.Object);
+            controller = new UsersController(mockRepo.Object);
 
             IActionResult actionResult = controller.Post(fakeUser).Result;
 
@@ -102,7 +104,7 @@ namespace Collab.API.Tests.Controllers
             mockRepo.Setup(repo => repo.GetByIdAsync(fakeUser.Id)).ReturnsAsync(fakeUser);
             User updatedFakeUser = new User() { Id = 1, Nickname = "James" };
             mockRepo.Setup(repo => repo.UpdateAsync(updatedFakeUser.Id, updatedFakeUser)).ReturnsAsync(true);
-            var controller = new UsersController(mockRepo.Object);
+            controller = new UsersController(mockRepo.Object);
 
             IActionResult actionResult = controller.Put(updatedFakeUser.Id, updatedFakeUser).Result;
 
@@ -119,7 +121,7 @@ namespace Collab.API.Tests.Controllers
         public void Update_InvalidId_ShouldReturnNotFound()
         {
             User updatedFakeUser = new User() { Id = 10, Nickname = "James" };
-            var controller = new UsersController(mockRepo.Object);
+            controller = new UsersController(mockRepo.Object);
 
             IActionResult actionResult = controller.Put(updatedFakeUser.Id, updatedFakeUser).Result;
 
@@ -135,7 +137,7 @@ namespace Collab.API.Tests.Controllers
         {
             mockRepo.Setup(repo => repo.GetByIdAsync(fakeUser.Id)).ReturnsAsync(fakeUser);
             mockRepo.Setup(repo => repo.DeleteAsync(fakeUser.Id)).ReturnsAsync(true);
-            var controller = new UsersController(mockRepo.Object);
+            controller = new UsersController(mockRepo.Object);
 
             IActionResult actionResult = controller.Delete(fakeUser.Id).Result;
 
@@ -153,7 +155,7 @@ namespace Collab.API.Tests.Controllers
         {
             User invalidFakeUser = new User() { Id = 10, Nickname = "Gerald" };
             mockRepo.Setup(repo => repo.DeleteAsync(fakeUser.Id)).ReturnsAsync(true);
-            var controller = new UsersController(mockRepo.Object);
+            controller = new UsersController(mockRepo.Object);
 
             IActionResult actionResult = controller.Delete(invalidFakeUser.Id).Result;
 
