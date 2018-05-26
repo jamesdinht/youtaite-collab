@@ -24,7 +24,7 @@ namespace Collab.API.DAL
         /// <param name="id">ID of the entity to be updated.</param>
         /// <param name="entity">An updated entity.</param>
         /// <returns>True if successful, false if not.</returns>
-        Task<bool> UpdateAsync(int id, TEntity entity);
+        Task<bool> UpdateAsync(int id, TEntity updatedEntity);
 
         /// <summary>
         /// Deletes an entity from the database.
