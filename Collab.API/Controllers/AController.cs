@@ -14,9 +14,9 @@ namespace Collab.API.Controllers
     {
         protected readonly IRepository<TEntity> db;
 
-        public AController(IRepository<TEntity> _db)
+        public AController(IRepository<TEntity> db)
         {
-            db = _db;
+            this.db = db;
         }
 
         // GET api/[entities]
