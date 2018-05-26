@@ -28,7 +28,7 @@ namespace Collab.API.BLL
             {
                 throw new ArgumentNullException(nameof(user));
             }
-            await db.AddAsync(user);
+            await db.Users.AddAsync(user);
         }
 
         public async Task<IEnumerable<User>> GetAllAsync()
