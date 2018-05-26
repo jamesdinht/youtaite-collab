@@ -25,7 +25,7 @@ namespace Collab.API.BLL
         public abstract Task<TEntity> GetByIdAsync(int id);
         public abstract Task<bool> UpdateAsync(int id, TEntity updatedEntity);
 
-        internal string IncorrectKeyMessage(int id, string entity)
+        protected string IncorrectKeyMessage(int id, string entity)
         {
             return $"{entity} with id: {id} does not exist.";
         }
