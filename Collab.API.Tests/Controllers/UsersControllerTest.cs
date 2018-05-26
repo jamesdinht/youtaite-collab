@@ -9,12 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Collab.API.Tests.Controllers
 {
-    public class UserControllerTest : IDisposable
+    public class UsersControllerTest : IDisposable
     {
         private User fakeUser;
         private Mock<IRepository<User>> mockRepo;
 
-        public UserControllerTest()
+        public UsersControllerTest()
         {
             fakeUser = new User { Id = 1, Nickname = "Gerald" };
             mockRepo = new Mock<IRepository<User>>();
