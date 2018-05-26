@@ -35,6 +35,7 @@ matrix:
 
     - language: csharp
       mono: none
+      dotnet: 2.0.0
       before_script:
         - sudo apt-get -qq update
         - mkdir tools
