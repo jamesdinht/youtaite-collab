@@ -22,13 +22,13 @@ namespace Collab.API.BLL
             this.db = db;
         }
 
-        public async Task CreateAsync(User user)
+        public async Task CreateAsync(User entity)
         {
-            if (user == null)
+            if (entity == null)
             {
-                throw new ArgumentNullException(nameof(user));
+                throw new ArgumentNullException(nameof(entity));
             }
-            await db.Users.AddAsync(user);
+            await db.Users.AddAsync(entity);
         }
 
         public async Task<IEnumerable<User>> GetAllAsync()
@@ -41,11 +41,11 @@ namespace Collab.API.BLL
             return await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
         }
 
-        public async Task<bool> UpdateAsync(int id, User updatedUser)
+        public async Task<bool> UpdateAsync(int id, User updatedEntity)
         {
-            if (updatedUser == null)
+            if (updatedEntity == null)
             {
-                throw new ArgumentNullException(nameof(updatedUser));
+                throw new ArgumentNullException(nameof(updatedEntity));
             }
 
             User userToBeUpdated = await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
@@ -54,7 +54,7 @@ namespace Collab.API.BLL
                 throw new KeyNotFoundException($"A user with id: {id} could not be found.");
             }
 
-            db.Entry(updatedUser).State = EntityState.Modified;
+            db.Entry(updatedEntity).State = EntityState.Modified;
             int rowsAffected = await db.SaveChangesAsync();
 
             return rowsAffected > 0;
