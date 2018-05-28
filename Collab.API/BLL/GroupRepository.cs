@@ -14,32 +14,13 @@ namespace Collab.API.BLL
         public GroupRepository(CollabContext db)
             : base(db)
         { }
-
-        public async override Task<bool> UpdateAsync(int id, Group updatedEntity)
-        {
-            if (updatedEntity == null)
-            {
-                throw new ArgumentNullException(nameof(updatedEntity));
-            }
-
-            Group groupToBeUpdated = await GetByIdAsync(id);
-            if (groupToBeUpdated == null)
-            {
-                throw new KeyNotFoundException(IncorrectKeyMessage(id, nameof(Group)));
-            }
-
-            db.Entry(updatedEntity).State = EntityState.Modified;
-            int rowsAffected = await db.SaveChangesAsync();
-
-            return rowsAffected > 0;
-        }
         
         public async override Task<bool> DeleteAsync(int id)
         {
             Group groupToBeDeleted = await GetByIdAsync(id);
             if (groupToBeDeleted == null)
             {
-                throw new KeyNotFoundException(IncorrectKeyMessage(id, nameof(Group)));
+                throw new KeyNotFoundException(IncorrectKeyMessage(id));
             }
 
             db.Groups.Remove(groupToBeDeleted);

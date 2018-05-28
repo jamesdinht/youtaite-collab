@@ -37,17 +37,42 @@ namespace Collab.API.BLL
         public abstract Task<bool> DeleteAsync(int id);
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await GetDbSet().ToListAsync();
+            return await GetDbSet().AsNoTracking().ToListAsync();
         }
         public virtual async Task<TEntity> GetByIdAsync(int id)
         {
-            return await GetDbSet().FirstOrDefaultAsync(entity => id == entity.Id);
+            return await GetDbSet().AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
         }
-        public abstract Task<bool> UpdateAsync(int id, TEntity updatedEntity);
-
-        protected string IncorrectKeyMessage(int id, string entity)
+        public virtual async Task<bool> UpdateAsync(int id, TEntity updatedEntity)
         {
-            return $"{entity} with id: {id} does not exist.";
+            if (updatedEntity == null)
+            {
+                throw new ArgumentNullException(nameof(updatedEntity));
+            }
+
+            TEntity entityToUpdate = await GetDbSet().AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
+            if (entityToUpdate == null)
+            {
+                throw new KeyNotFoundException(IncorrectKeyMessage(id));
+            }
+
+            db.Entry(updatedEntity).State = EntityState.Modified;
+            int rowsAffected = 0;
+            try 
+            {
+                rowsAffected = await db.SaveChangesAsync();
+            }
+            catch (DbUpdateException dbue)
+            {
+                throw dbue;
+            }
+            
+            return rowsAffected > 0;
+        }
+
+        protected string IncorrectKeyMessage(int id)
+        {
+            return $"{typeof(TEntity).Name} with id: {id} does not exist.";
         }
 
         /// <summary>
