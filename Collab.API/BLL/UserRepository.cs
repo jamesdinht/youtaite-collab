@@ -18,19 +18,5 @@ namespace Collab.API.BLL
         public UserRepository(CollabContext db)
             : base (db)
         { }
-
-        public async override Task<bool> DeleteAsync(int id)
-        {
-            User userToBeDeleted = await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
-            if (userToBeDeleted == null)
-            {
-                throw new KeyNotFoundException(IncorrectKeyMessage(id));
-            }
-
-            db.Users.Remove(userToBeDeleted);
-            int rowsAffected = await db.SaveChangesAsync();
-
-            return rowsAffected > 0;
-        }
     }
 }

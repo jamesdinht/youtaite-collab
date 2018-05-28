@@ -34,7 +34,6 @@ namespace Collab.API.BLL
             await db.SaveChangesAsync();
         }
 
-        public abstract Task<bool> DeleteAsync(int id);
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await GetDbSet().AsNoTracking().ToListAsync();
@@ -67,6 +66,20 @@ namespace Collab.API.BLL
                 throw dbue;
             }
             
+            return rowsAffected > 0;
+        }
+        
+        public virtual async Task<bool> DeleteAsync(int id)
+        {
+            TEntity entityToDelete = await GetDbSet().AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
+            if (entityToDelete == null)
+            {
+                throw new KeyNotFoundException(IncorrectKeyMessage(id));
+            }
+
+            GetDbSet().Remove(entityToDelete);
+            int rowsAffected = await db.SaveChangesAsync();
+
             return rowsAffected > 0;
         }
 
