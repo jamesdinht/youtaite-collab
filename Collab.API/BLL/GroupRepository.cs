@@ -25,11 +25,6 @@ namespace Collab.API.BLL
             await db.Groups.AddAsync(entity);
             await db.SaveChangesAsync();
         }
-        
-        public async override Task<Group> GetByIdAsync(int id)
-        {
-            return await db.Groups.AsNoTracking().FirstOrDefaultAsync(group => id == group.Id);
-        }
 
         public async override Task<bool> UpdateAsync(int id, Group updatedEntity)
         {

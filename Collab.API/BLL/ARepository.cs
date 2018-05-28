@@ -6,6 +6,7 @@ using Collab.API.Models;
 using Collab.API.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Humanizer;
+using System.Reflection;
 
 namespace Collab.API.BLL
 {
@@ -26,20 +27,29 @@ namespace Collab.API.BLL
         public abstract Task<bool> DeleteAsync(int id);
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            Type setType = typeof(TEntity);
-            
-            string setName = setType.Name.Pluralize();
-
-            DbSet<TEntity> set = db.GetType().GetProperty(setName).GetValue(db, null) as  DbSet<TEntity>;
-
-            return await set.ToListAsync();
+            return await GetDbSet().ToListAsync();
         }
-        public abstract Task<TEntity> GetByIdAsync(int id);
+        public virtual async Task<TEntity> GetByIdAsync(int id)
+        {
+            return await GetDbSet().FirstOrDefaultAsync(entity => id == entity.Id);
+        }
         public abstract Task<bool> UpdateAsync(int id, TEntity updatedEntity);
 
         protected string IncorrectKeyMessage(int id, string entity)
         {
             return $"{entity} with id: {id} does not exist.";
+        }
+
+        /// <summary>
+        /// During runtime, returns the DbSet for the corresponding Repository
+        /// </summary>
+        /// <returns>The DbSet for the corresponding repository.</returns>
+        private DbSet<TEntity> GetDbSet()
+        {
+            Type setType = typeof(TEntity);
+            string setName = setType.Name.Pluralize();
+            PropertyInfo set = db.GetType().GetProperty(setName);
+            return set.GetValue(db, null) as DbSet<TEntity>;
         }
     }
 }
