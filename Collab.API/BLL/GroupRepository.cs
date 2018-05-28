@@ -26,11 +26,6 @@ namespace Collab.API.BLL
             await db.SaveChangesAsync();
         }
         
-        public async override Task<IEnumerable<Group>> GetAllAsync()
-        {
-            return await db.Groups.AsNoTracking().ToListAsync();
-        }
-
         public async override Task<Group> GetByIdAsync(int id)
         {
             return await db.Groups.AsNoTracking().FirstOrDefaultAsync(group => id == group.Id);

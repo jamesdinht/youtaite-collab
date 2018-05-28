@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Collab.API.DAL;
 using Collab.API.Models;
 using Collab.API.Models.Context;
+using Microsoft.EntityFrameworkCore;
+using Humanizer;
 
 namespace Collab.API.BLL
 {
@@ -21,7 +24,16 @@ namespace Collab.API.BLL
 
         public abstract Task CreateAsync(TEntity entity);
         public abstract Task<bool> DeleteAsync(int id);
-        public abstract Task<IEnumerable<TEntity>> GetAllAsync();
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            Type setType = typeof(TEntity);
+            
+            string setName = setType.Name.Pluralize();
+
+            DbSet<TEntity> set = db.GetType().GetProperty(setName).GetValue(db, null) as  DbSet<TEntity>;
+
+            return await set.ToListAsync();
+        }
         public abstract Task<TEntity> GetByIdAsync(int id);
         public abstract Task<bool> UpdateAsync(int id, TEntity updatedEntity);
 

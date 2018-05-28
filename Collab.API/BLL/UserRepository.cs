@@ -29,11 +29,6 @@ namespace Collab.API.BLL
             await db.SaveChangesAsync();
         }
 
-        public async override Task<IEnumerable<User>> GetAllAsync()
-        {
-            return await db.Users.AsNoTracking().ToListAsync();
-        }
-
         public async override Task<User> GetByIdAsync(int id)
         {
             return await db.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id);
