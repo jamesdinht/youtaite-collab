@@ -15,17 +15,6 @@ namespace Collab.API.BLL
             : base(db)
         { }
 
-        public async override Task CreateAsync(Group entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            await db.Groups.AddAsync(entity);
-            await db.SaveChangesAsync();
-        }
-
         public async override Task<bool> UpdateAsync(int id, Group updatedEntity)
         {
             if (updatedEntity == null)

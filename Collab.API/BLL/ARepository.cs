@@ -23,7 +23,17 @@ namespace Collab.API.BLL
             this.db = db;
         }
 
-        public abstract Task CreateAsync(TEntity entity);
+        public virtual async Task CreateAsync(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentException(nameof(entity));
+            }
+
+            await GetDbSet().AddAsync(entity);
+            await db.SaveChangesAsync();
+        }
+
         public abstract Task<bool> DeleteAsync(int id);
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
