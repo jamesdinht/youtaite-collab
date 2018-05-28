@@ -1,4 +1,5 @@
 using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Collab.API.Models.Config.Extensions
@@ -18,7 +19,8 @@ namespace Collab.API.Models.Config.Extensions
         public static PropertyBuilder<DateTime> AddDateCreatedColumn<T>(this EntityTypeBuilder<T> builder, string columnName="DateCreated") where T : class
         {
             return builder.Property<DateTime>(columnName)
-                .ValueGeneratedOnAdd();
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("GETDATE()");
         }
 
         /// <summary>
@@ -28,9 +30,9 @@ namespace Collab.API.Models.Config.Extensions
         /// </summary>
         /// <typeparam name="DateTime">SQL column datatype</typeparam>
         /// <param name="columnName">Name of the column in the database</param>
-        public static PropertyBuilder<DateTime> AddLastUpdatedColumn<T>(this EntityTypeBuilder<T> builder, string columnName="DateLastUpdated") where T : class
+        public static PropertyBuilder<DateTime?> AddLastUpdatedColumn<T>(this EntityTypeBuilder<T> builder, string columnName="DateLastUpdated") where T : class
         {
-            return builder.Property<DateTime>(columnName)
+            return builder.Property<DateTime?>(columnName)
                 .ValueGeneratedOnAddOrUpdate();
         }
     }
