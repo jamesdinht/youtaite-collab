@@ -6,6 +6,7 @@ using Collab.API.Models;
 using Collab.API.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Humanizer;
+using System.Reflection;
 
 namespace Collab.API.BLL
 {
@@ -22,24 +23,81 @@ namespace Collab.API.BLL
             this.db = db;
         }
 
-        public abstract Task CreateAsync(TEntity entity);
-        public abstract Task<bool> DeleteAsync(int id);
+        public virtual async Task CreateAsync(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentException(nameof(entity));
+            }
+
+            await GetDbSet().AddAsync(entity);
+            await db.SaveChangesAsync();
+        }
+
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            Type setType = typeof(TEntity);
-            
-            string setName = setType.Name.Pluralize();
-
-            DbSet<TEntity> set = db.GetType().GetProperty(setName).GetValue(db, null) as  DbSet<TEntity>;
-
-            return await set.ToListAsync();
+            return await GetDbSet().AsNoTracking().ToListAsync();
         }
-        public abstract Task<TEntity> GetByIdAsync(int id);
-        public abstract Task<bool> UpdateAsync(int id, TEntity updatedEntity);
-
-        protected string IncorrectKeyMessage(int id, string entity)
+        public virtual async Task<TEntity> GetByIdAsync(int id)
         {
-            return $"{entity} with id: {id} does not exist.";
+            return await GetDbSet().AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
+        }
+        public virtual async Task<bool> UpdateAsync(int id, TEntity updatedEntity)
+        {
+            if (updatedEntity == null)
+            {
+                throw new ArgumentNullException(nameof(updatedEntity));
+            }
+
+            TEntity entityToUpdate = await GetDbSet().AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
+            if (entityToUpdate == null)
+            {
+                throw new KeyNotFoundException(IncorrectKeyMessage(id));
+            }
+
+            db.Entry(updatedEntity).State = EntityState.Modified;
+            int rowsAffected = 0;
+            try 
+            {
+                rowsAffected = await db.SaveChangesAsync();
+            }
+            catch (DbUpdateException dbue)
+            {
+                throw dbue;
+            }
+            
+            return rowsAffected > 0;
+        }
+        
+        public virtual async Task<bool> DeleteAsync(int id)
+        {
+            TEntity entityToDelete = await GetDbSet().AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
+            if (entityToDelete == null)
+            {
+                throw new KeyNotFoundException(IncorrectKeyMessage(id));
+            }
+
+            GetDbSet().Remove(entityToDelete);
+            int rowsAffected = await db.SaveChangesAsync();
+
+            return rowsAffected > 0;
+        }
+
+        protected string IncorrectKeyMessage(int id)
+        {
+            return $"{typeof(TEntity).Name} with id: {id} does not exist.";
+        }
+
+        /// <summary>
+        /// During runtime, returns the DbSet for the corresponding Repository
+        /// </summary>
+        /// <returns>The DbSet for the corresponding repository.</returns>
+        private DbSet<TEntity> GetDbSet()
+        {
+            Type setType = typeof(TEntity);
+            string setName = setType.Name.Pluralize();
+            PropertyInfo set = db.GetType().GetProperty(setName);
+            return set.GetValue(db, null) as DbSet<TEntity>;
         }
     }
 }

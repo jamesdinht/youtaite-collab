@@ -14,54 +14,5 @@ namespace Collab.API.BLL
         public GroupRepository(CollabContext db)
             : base(db)
         { }
-
-        public async override Task CreateAsync(Group entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            await db.Groups.AddAsync(entity);
-            await db.SaveChangesAsync();
-        }
-        
-        public async override Task<Group> GetByIdAsync(int id)
-        {
-            return await db.Groups.AsNoTracking().FirstOrDefaultAsync(group => id == group.Id);
-        }
-
-        public async override Task<bool> UpdateAsync(int id, Group updatedEntity)
-        {
-            if (updatedEntity == null)
-            {
-                throw new ArgumentNullException(nameof(updatedEntity));
-            }
-
-            Group groupToBeUpdated = await GetByIdAsync(id);
-            if (groupToBeUpdated == null)
-            {
-                throw new KeyNotFoundException(IncorrectKeyMessage(id, nameof(Group)));
-            }
-
-            db.Entry(updatedEntity).State = EntityState.Modified;
-            int rowsAffected = await db.SaveChangesAsync();
-
-            return rowsAffected > 0;
-        }
-        
-        public async override Task<bool> DeleteAsync(int id)
-        {
-            Group groupToBeDeleted = await GetByIdAsync(id);
-            if (groupToBeDeleted == null)
-            {
-                throw new KeyNotFoundException(IncorrectKeyMessage(id, nameof(Group)));
-            }
-
-            db.Groups.Remove(groupToBeDeleted);
-            int rowsAffected = await db.SaveChangesAsync();
-
-            return rowsAffected > 0;
-        }
     }
 }
