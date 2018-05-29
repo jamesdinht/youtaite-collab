@@ -12,12 +12,20 @@ matrix:
       mono: none
       dotnet: 2.0.0
       before_script:
-
+        - sudo apt-get -qq update
+        - mkdir tools
+        - wget -O sonar.zip https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/4.2.0.1214/sonar-scanner-msbuild-4.2.0.1214-netcoreapp2.0.zip
+        - unzip -qq sonar.zip -d tools/sonar
+        - ls -l tools/sonar
+        - chmod +x tools/sonar/sonar-scanner-3.1.0.1141/bin/sonar-scanner
+        - chmod +x tools/sonar/SonarScanner.MSBuild.dll
       install:
         - dotnet restore
       script:
+        - dotnet tools/sonar/SonarScanner.MSBuild.dll begin /k:youtaite-collab /d:sonar.login=${SONAR_TOKEN} /d:sonar.host.url="https://sonarcloud.io" /d:sonar.tests="Collab.API.Tests"
         - dotnet build --no-restore
-        - dotnet test Collab.API.Tests/Collab.API.Tests.csproj
+        - dotnet test --no-build Collab.API.Tests
+        - dotnet tools/sonar/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_TOKEN}
 
     - language: node_js
       node_js:
@@ -32,20 +40,3 @@ matrix:
       script:
         - ng build
         - ng test
-
-    - language: csharp
-      mono: none
-      dotnet: 2.0.0
-      before_script:
-        - sudo apt-get -qq update
-        - mkdir tools
-        - wget -O sonar.zip https://github.com/SonarSource/sonar-scanner-msbuild/releases/download/4.2.0.1214/sonar-scanner-msbuild-4.2.0.1214-netcoreapp2.0.zip
-        - unzip -qq sonar.zip -d tools/sonar
-        - ls -l tools/sonar
-        - chmod +x tools/sonar/sonar-scanner-3.1.0.1141/bin/sonar-scanner
-        - chmod +x tools/sonar/SonarScanner.MSBuild.dll
-      script:
-        - dotnet tools/sonar/SonarScanner.MSBuild.dll begin /k:youtaite-collab /d:sonar.login=${SONAR_TOKEN} /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="coverage.xml" /d:sonar.test.exclusions="Collab.API.Tests/*"
-        - dotnet build
-        - dotnet test Collab.API.Tests -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
-        - dotnet tools/sonar/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_TOKEN}
