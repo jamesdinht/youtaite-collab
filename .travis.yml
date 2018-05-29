@@ -45,7 +45,7 @@ matrix:
         - chmod +x tools/sonar/sonar-scanner-3.1.0.1141/bin/sonar-scanner
         - chmod +x tools/sonar/SonarScanner.MSBuild.dll
       script:
-        - dotnet tools/sonar/SonarScanner.MSBuild.dll begin /k:youtaite-collab /d:sonar.login=${SONAR_TOKEN} /d:sonar.host.url="https://sonarcloud.io"
+        - dotnet tools/sonar/SonarScanner.MSBuild.dll begin /k:youtaite-collab /d:sonar.login=${SONAR_TOKEN} /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="coverage.xml" /d:sonar.test.exclusions="Collab.API.Tests/*"
         - dotnet build
-        - dotnet test Collab.API.Tests
+        - dotnet test Collab.API.Tests -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
         - dotnet tools/sonar/SonarScanner.MSBuild.dll end /d:sonar.login=${SONAR_TOKEN}
