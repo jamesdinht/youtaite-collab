@@ -13,35 +13,61 @@ namespace Collab.API.BLL
     /// <summary>
     /// Abstract repository that defines common logic across all concrete repositories.
     /// </summary>
-    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TEntity">A data entity.</typeparam>
     public abstract class ARepository<TEntity> : IRepository<TEntity> where TEntity : BaseModel
     {
         protected readonly CollabContext db;
 
-        public ARepository(CollabContext db)
+        protected ARepository(CollabContext db)
         {
             this.db = db;
         }
 
+        /// <summary>
+        /// Creates an entity and adds it to the database.
+        /// </summary>
+        /// <param name="entity">Entity to be created.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">UpdatedEntity is null.</exception>
         public virtual async Task CreateAsync(TEntity entity)
         {
             if (entity == null)
             {
-                throw new ArgumentException(nameof(entity));
+                throw new ArgumentNullException(nameof(entity));
             }
 
             await GetDbSet().AddAsync(entity);
             await db.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Retrieves all the entities of a data set.
+        /// </summary>
+        /// <returns>A collection of entities.</returns>
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await GetDbSet().AsNoTracking().ToListAsync();
         }
+
+        /// <summary>
+        /// Retrieves an entity with the specified ID.
+        /// </summary>
+        /// <param name="id">ID of the entity to retrieve.</param>
+        /// <returns>Entity with matching ID.</returns>
         public virtual async Task<TEntity> GetByIdAsync(int id)
         {
             return await GetDbSet().AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
         }
+
+        /// <summary>
+        /// Updates an entity with the specified ID.
+        /// </summary>
+        /// <param name="id">ID of the entity to update.</param>
+        /// <param name="updatedEntity">The updated entity.</param>
+        /// <returns>True if successful, false if not.</returns>
+        /// <exception cref="System.ArgumentNullException">UpdatedEntity is null.</exception>
+        /// <exception cref="System.Collections.Generic.KeyNotFoundException">No entity with matching ID is found.</exception>
+        /// <exception cref="Microsoft.EntityFrameworkCore.DbUpdateException">An error is encountered while saving to the database.</exception>
         public virtual async Task<bool> UpdateAsync(int id, TEntity updatedEntity)
         {
             if (updatedEntity == null)
@@ -61,14 +87,21 @@ namespace Collab.API.BLL
             {
                 rowsAffected = await db.SaveChangesAsync();
             }
-            catch (DbUpdateException dbue)
+            catch (DbUpdateException)
             {
-                throw dbue;
+                throw;
             }
             
             return rowsAffected > 0;
         }
         
+        /// <summary>
+        /// Deletes an entity with the specified ID.
+        /// </summary>
+        /// <param name="id">ID of the entity to delete.</param>
+        /// <returns>True if successful, false if not</returns>
+        /// <exception cref="System.Collections.Generic.KeyNotFoundException">No entity with matching ID is found.</exception>
+        /// 
         public virtual async Task<bool> DeleteAsync(int id)
         {
             TEntity entityToDelete = await GetDbSet().AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);

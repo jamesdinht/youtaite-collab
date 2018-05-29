@@ -9,6 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Collab.API.BLL
 {
+    /// <summary>
+    /// Concrete implementation for Groups.
+    /// </summary>
+    /// <typeparam name="Group">A group of users.</typeparam>
     public class GroupRepository : ARepository<Group>
     {
         public GroupRepository(CollabContext db)
