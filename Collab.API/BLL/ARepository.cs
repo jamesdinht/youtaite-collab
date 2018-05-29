@@ -124,7 +124,7 @@ namespace Collab.API.BLL
         /// <summary>
         /// During runtime, returns the DbSet for the corresponding Repository
         /// </summary>
-        /// <returns>The DbSet for the corresponding repository.</returns>
+        /// <returns>The DbSet for the corresponding repository. Null, if the set does not exist.</returns>
         private DbSet<TEntity> GetDbSet()
         {
             Type setType = typeof(TEntity);
