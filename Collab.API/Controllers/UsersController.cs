@@ -11,7 +11,7 @@ namespace Collab.API.Controllers
     [Route("api/[controller]")]
     public class UsersController : AController<User>
     {
-        public UsersController(IRepository<User> _db) : base(_db)
+        public UsersController(IRepository<User> db) : base(db)
         { }    
     }
 }
