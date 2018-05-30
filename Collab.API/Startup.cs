@@ -66,6 +66,7 @@ namespace Collab.API
 
             services.AddTransient<IRepository<User>, UserRepository>();
             services.AddTransient<IRepository<Group>, GroupRepository>();
+            services.AddTransient<IRepository<Project>, ProjectRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
