@@ -11,13 +11,11 @@ matrix:
     - language: csharp
       mono: none
       dotnet: 2.0.0
-      before_script:
-        - bash sonar-install.sh
       install:
         - dotnet restore
       script:
-        - bash sonar-build.sh
-        - dotnet test Collab.API.Tests
+        - dotnet build --no-restore
+        - dotnet test --no-build Collab.API.Tests
 
     - language: node_js
       node_js:

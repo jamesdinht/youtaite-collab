@@ -1,7 +1,6 @@
 # Current Status
 
 [![Build Status](https://travis-ci.org/jamesdinht/youtaite-collab.svg?branch=master)](https://travis-ci.org/jamesdinht/youtaite-collab)
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=youtaite-collab&metric=alert_status)](https://sonarcloud.io/dashboard?id=youtaite-collab)
 
 ## Youtaite Collab Tool
 
@@ -79,4 +78,3 @@ Visit the wiki [here](https://github.com/jamesdinht/youtaite-collab/wiki).
   - [Visual Studio Code](https://code.visualstudio.com) - IDE
   - [Vagrant](https://www.vagrantup.com) - Virtual Machine for isolated development environment
   - [VirtualBox](https://www.virtualbox.org) - Vagrant provider
-  - [SonarCloud](https://www.sonarcloud.io) - Code Analysis
