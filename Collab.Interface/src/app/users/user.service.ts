@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from "rxjs/operators";
+import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from './user';
 
@@ -32,6 +32,6 @@ export class UserService {
       console.log(`${operation} error`);
 
       return of(result as T);
-    }
+    };
   }
 }

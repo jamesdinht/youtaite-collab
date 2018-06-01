@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  usersUrl: "http://localhost:9000/api/users"
+  usersUrl: 'http://localhost:9000/api/users',
+  groupsUrl: 'http://localhost:9000/api/groups',
+  projectsUrl: 'http://localhost:9000/api/projects'
 };
 
 /*
