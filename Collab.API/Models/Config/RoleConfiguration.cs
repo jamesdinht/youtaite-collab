@@ -11,8 +11,6 @@ namespace Collab.API.Models.Config
             builder.ToTable("Roles")
                 .HasKey(r => r.Id);
 
-            builder.HasMany(r => r.UserRoles);
-
             builder.Property(r => r.Id)
                 .HasColumnName("RoleId")
                 .ValueGeneratedNever();

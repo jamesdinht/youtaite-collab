@@ -8,15 +8,11 @@ namespace Collab.API.Models.Config
     {
         public void Configure(EntityTypeBuilder<Group> builder)
         {
-            builder.ToTable("Groups")
-                .HasMany(g => g.Users);
+            builder.ToTable("Groups");
 
             builder.Property(g => g.Id)
                 .HasColumnName("GroupId")
                 .UseSqlServerIdentityColumn();
-
-            builder.HasMany(g => g.Projects)
-                .WithOne(p => p.Group);
                 
             builder.AddDateCreatedColumn();
             builder.AddLastUpdatedColumn();
