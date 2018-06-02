@@ -10,20 +10,33 @@ import { User } from './user';
 })
 export class UserService {
 
-  constructor(private client: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   getAllUsers(): Observable<User[]> {
-    return this.client.get<User[]>(environment.usersUrl)
+    return this.httpClient.get<User[]>(environment.usersUrl)
       .pipe(
         catchError(this.handleError('getAllUsers', []))
       );
   }
 
   getUserById(id: number): Observable<User> {
-    return this.client.get<User>(environment.usersUrl + `/${id}`)
+    return this.httpClient.get<User>(environment.usersUrl + `/${id}`)
     .pipe(
       catchError(this.handleError<User>(`getUserbyId id=${id}`))
     );
+  }
+
+  createUser(user: User): Observable<User> {
+    const body = JSON.stringify({ Name: User.name });
+    return this.httpClient.post<User>(environment.usersUrl, body);
+  }
+
+  updateUser(updatedUser: User): Observable<boolean> {
+    return this.httpClient.put<boolean>(environment.usersUrl + updatedUser.id, updatedUser);
+  }
+
+  deleteUserById(userToBeDeleted: User): Observable<boolean> {
+    return this.httpClient.delete<boolean>(environment.usersUrl + userToBeDeleted.id);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
