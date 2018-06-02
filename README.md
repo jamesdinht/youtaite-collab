@@ -66,7 +66,8 @@ Visit the wiki [here](https://github.com/jamesdinht/youtaite-collab/wiki).
 - ### Frontend
   - [HTML, CSS, JavaScript](https://www.w3schools.com) - Web Development languages
   - [TypeScript](https://www.typescriptlang.org) - JavaScript transcompiler used for Angular
-  - [Angular 5](https://angular.io) - Web development framework
+  - [Angular 6](https://angular.io) - Web development framework
+  - [Angular Material](https://material.angular.io) - Styling library
   - [Jasmine](https://jasmine.github.io) - JavaScript testing
   - [Karma](https://karma-runner.github.io/2.0/index.html) - JavaScript test runner
 - ### DevOps
