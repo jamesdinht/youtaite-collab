@@ -21,9 +21,9 @@ export class UserService {
 
   getUserById(id: number): Observable<User> {
     return this.client.get<User>(environment.usersUrl + `/${id}`)
-      .pipe(
-        catchError(this.handleError(`getUserById id=${id}`))
-      );
+    .pipe(
+      catchError(this.handleError<User>(`getUserbyId id=${id}`))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
