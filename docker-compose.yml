@@ -26,10 +26,10 @@ version: '3'
 
 services:
   webapi:
-    image: collab-webapi:0.1.0
     build:
       context: Collab.API
       dockerfile: Dockerfile
+    image: collab-webapi:0.1.0
     ports: 
       - "9000:80"
     deploy:
