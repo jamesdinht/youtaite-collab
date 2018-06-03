@@ -21,12 +21,15 @@ matrix:
       node_js:
         - "8.9.4"
       cache:
+        yarn: true
         directories:
           - "node_modules"
       before_script:
         - cd Collab.Interface
         - npm install -g @angular/cli
-        - npm install
+        - npm install -g yarn
+      install:
+        - yarn
       script:
         - ng build
         - ng test
