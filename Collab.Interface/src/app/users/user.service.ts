@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { User } from './user';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +31,12 @@ export class UserService {
     return this.httpClient.post<User>(environment.usersUrl, body);
   }
 
-  updateUser(updatedUser: User): Observable<boolean> {
-    return this.httpClient.put<boolean>(environment.usersUrl + updatedUser.id, updatedUser);
+  updateUser(updatedUser: User): Observable<User> {
+    return this.httpClient.put<User>(environment.usersUrl + updatedUser.id, updatedUser);
   }
 
-  deleteUserById(userToBeDeleted: User): Observable<boolean> {
-    return this.httpClient.delete<boolean>(environment.usersUrl + userToBeDeleted.id);
+  deleteUser(userToBeDeleted: User): Observable<User[]> {
+    return this.httpClient.delete<User[]>(environment.usersUrl + userToBeDeleted.id);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
