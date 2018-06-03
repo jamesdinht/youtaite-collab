@@ -40,9 +40,10 @@ Want to contribute? Read [here](CONTRIBUTING.md).
       - If the files are not present, try `vagrant reload`
 - Initialize the Docker swarm
   - `docker swarm init`
-- Run the localdeploy script to build and run the application on localhost
-  - `bash localdeploy.sh`
-  - Alternatively, open `docker-compose.override.dev.yml`. The comments contain the individual docker commands to run
+- Build the images using Docker Compose
+  - `docker-compose -f docker-compose.override.dev.yml build`
+- Deploy the images on a Docker stack
+  - `docker stack deploy -c docker-compose.override.dev.yml collab`
 - Once the services are deployed, open your browser and navigate to `localhost:9100`
   - If the page loads, Congratulations! You have successfully built and deployed this application locally!
   - If not, feel free to submit an issue or email me at jamesdinh14@gmail.com for questions
@@ -79,3 +80,4 @@ Visit the wiki [here](https://github.com/jamesdinht/youtaite-collab/wiki).
   - [Visual Studio Code](https://code.visualstudio.com) - IDE
   - [Vagrant](https://www.vagrantup.com) - Virtual Machine for isolated development environment
   - [VirtualBox](https://www.virtualbox.org) - Vagrant provider
+  - [Yarn](https://yarnpkg.com/en/) - Package manager
