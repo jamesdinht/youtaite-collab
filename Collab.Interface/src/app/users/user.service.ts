@@ -20,7 +20,7 @@ export class UserService {
   }
 
   getUserById(id: number): Observable<User> {
-    return this.httpClient.get<User>(environment.usersUrl + `/${id}`)
+    return this.httpClient.get<User>(`${environment.usersUrl}/${id}`)
     .pipe(
       catchError(this.handleError<User>(`getUserbyId id=${id}`))
     );
