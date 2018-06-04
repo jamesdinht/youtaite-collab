@@ -43,7 +43,7 @@ describe('UserService', () => {
       expect(response.length).toBe(2);
     });
     const request = httpMock.expectOne(environment.usersUrl);
-    expect(request.request.method).toEqual('GET');
+    expect(request.request.method).toBe('GET');
 
     request.flush([
       { id: 1, nickname: 'James' },
@@ -63,7 +63,7 @@ describe('UserService', () => {
       });
 
       const request = httpMock.expectOne(`${environment.usersUrl}/${id}`);
-      expect(request.request.method).toEqual('GET');
+      expect(request.request.method).toBe('GET');
 
       request.flush(
         fakeUser
@@ -78,7 +78,7 @@ describe('UserService', () => {
       });
 
       const request = httpMock.expectOne(`${environment.usersUrl}/${id}`);
-      expect(request.request.method).toEqual('GET');
+      expect(request.request.method).toBe('GET');
     });
 
     it('should add new user correctly', () => {
