@@ -117,4 +117,24 @@ describe('UserService', () => {
         updatedUser
       );
     });
+
+    // TODO: Find out whether this is correct, later
+    it('should delete a user correctly', () => {
+
+      const id = 1;
+      const nickname = 'James';
+      const fakeUser = new User(id, nickname);
+
+      service.deleteUser(fakeUser).subscribe(response => {
+        expect(response).toBeTruthy();
+        expect(response).toEqual(fakeUser);
+      });
+
+      const request = httpMock.expectOne(`${environment.usersUrl}/${id}`);
+      expect(request.request.method).toBe('DELETE');
+
+      request.flush(
+        fakeUser
+      );
+    });
 });
