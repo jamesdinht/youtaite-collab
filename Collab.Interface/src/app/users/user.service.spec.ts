@@ -96,18 +96,25 @@ describe('UserService', () => {
       expect(request.request.method).toBe('POST');
     });
 
+    // TODO: Find out how to correctly implement this test case
     it('should update a user correctly', () => {
 
       const id = 1;
       const nickname = 'James';
       const newNickname = 'Menji';
+      const fakeUser = new User(id, nickname);
       const updatedUser = new User(id, newNickname);
 
       service.updateUser(updatedUser).subscribe(response => {
         expect(response).toBeTruthy();
+        expect(response).toEqual(updatedUser);
       });
 
       const request = httpMock.expectOne(`${environment.usersUrl}/${id}`);
       expect(request.request.method).toBe('PUT');
+
+      request.flush(
+        updatedUser
+      );
     });
 });
