@@ -95,4 +95,19 @@ describe('UserService', () => {
       const request = httpMock.expectOne(`${environment.usersUrl}`);
       expect(request.request.method).toBe('POST');
     });
+
+    it('should update a user correctly', () => {
+
+      const id = 1;
+      const nickname = 'James';
+      const newNickname = 'Menji';
+      const updatedUser = new User(id, newNickname);
+
+      service.updateUser(updatedUser).subscribe(response => {
+        expect(response).toBeTruthy();
+      });
+
+      const request = httpMock.expectOne(`${environment.usersUrl}/${id}`);
+      expect(request.request.method).toBe('PUT');
+    });
 });

@@ -32,7 +32,7 @@ export class UserService {
   }
 
   updateUser(updatedUser: User): Observable<User> {
-    return this.httpClient.put<User>(environment.usersUrl + updatedUser.id, updatedUser);
+    return this.httpClient.put<User>(`${environment.usersUrl}/${updatedUser.id}`, updatedUser);
   }
 
   deleteUser(userToBeDeleted: User): Observable<User[]> {
