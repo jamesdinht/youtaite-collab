@@ -21,19 +21,22 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(environment.usersUrl)
       .pipe(
-        catchError(this.handleError('getAllUsers', []))
+        catchError(this.handleError<User[]>('getAllUsers', []))
       );
   }
 
   getUserById(id: number): Observable<User> {
     return this.httpClient.get<User>(`${environment.usersUrl}/${id}`, this.httpOptions)
-    .pipe(
-      catchError(this.handleError<User>(`getUserbyId id=${id}`))
-    );
+      .pipe(
+        catchError(this.handleError<User>(`getUserbyId id=${id}`))
+      );
   }
 
   createUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(environment.usersUrl, user, this.httpOptions);
+    return this.httpClient.post<User>(environment.usersUrl, user, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<User>(`createUser`, user))
+      );
   }
 
   updateUser(updatedUser: User): Observable<User> {
@@ -43,8 +46,11 @@ export class UserService {
       );
   }
 
-  deleteUser(userToBeDeleted: User): Observable<User[]> {
-    return this.httpClient.delete<User[]>(environment.usersUrl + userToBeDeleted.id, this.httpOptions);
+  deleteUser(userToBeDeleted: User): Observable<User> {
+    return this.httpClient.delete<User>(`${environment.usersUrl}/${userToBeDeleted.id}`, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<User>(`deleteUser`, userToBeDeleted))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
