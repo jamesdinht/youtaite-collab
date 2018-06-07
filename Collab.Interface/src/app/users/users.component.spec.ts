@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsersComponent } from './users.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { UserService } from 'src/app/shared/user.service';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -11,7 +12,10 @@ describe('UsersComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ UsersComponent ],
       imports: [
-        HttpClientModule
+        HttpClientTestingModule,
+      ],
+      providers: [
+        UserService,
       ]
     })
     .compileComponents();
