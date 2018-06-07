@@ -6,6 +6,14 @@ import { UsersComponent } from './users/users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatButtonModule } from '@angular/material';
+import { Routes, RouterModule } from '@angular/router';
+
+export const appRoutes: Routes = [
+  {
+    path: 'users',
+    component: UsersComponent
+  },
+];
 
 @NgModule({
   declarations: [
@@ -15,9 +23,12 @@ import { MatToolbarModule, MatButtonModule } from '@angular/material';
   imports: [
     BrowserModule,
     HttpClientModule,
+    RouterModule.forRoot(
+      appRoutes,
+    ),
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
