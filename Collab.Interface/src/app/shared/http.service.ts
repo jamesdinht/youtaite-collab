@@ -16,27 +16,11 @@ export class HttpService {
     })
   };
 
-  get<T>(): Observable<T[]> {
-    return this.httpClient.get<T[]>(this.apiUrl, this.httpOptions)
-      .pipe(
-        catchError(this.handleError<T[]>(this.get.name, []))
-      );
+  getAll<T>(): Observable<T[]> {
+    return this.httpClient.get<T[]>(this.apiUrl, this.httpOptions);
   }
 
   getById<T>(id: number): Observable<T> {
-    return this.httpClient.get<T>(this.apiUrl, this.httpOptions)
-      .pipe(
-        catchError(this.handleError<T>(this.getById.name))
-      );
-  }
-
-  protected handleError<T>(operation = 'operation', result?: T) {
-    return (error: Error): Observable<T> => {
-      // Log error
-      console.error(`${operation} error`);
-      console.error(`${error.name}: ${error.message}`);
-
-      return of(result as T);
-    };
+    return this.httpClient.get<T>(this.apiUrl, this.httpOptions);
   }
 }
