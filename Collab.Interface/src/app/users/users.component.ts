@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from 'src/app/shared/user.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
+  providers: [UserService]
 })
+
 export class UsersComponent implements OnInit {
 
   users: User[];
