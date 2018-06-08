@@ -16,23 +16,23 @@ export class HttpService {
     })
   };
 
-  getAll<T extends BaseModel>(): Observable<T[]> {
+  protected getAll<T extends BaseModel>(): Observable<T[]> {
     return this.httpClient.get<T[]>(this.apiUrl, this.httpOptions);
   }
 
-  getById<T extends BaseModel>(id: number): Observable<T> {
+  protected getById<T extends BaseModel>(id: number): Observable<T> {
     return this.httpClient.get<T>(`${this.apiUrl}/${id}`, this.httpOptions);
   }
 
-  create<T extends BaseModel>(entity: T): Observable<T> {
+  protected create<T extends BaseModel>(entity: T): Observable<T> {
     return this.httpClient.post<T>(this.apiUrl, entity, this.httpOptions);
   }
 
-  update<T extends BaseModel>(updatedEntity: T): Observable<T> {
+  protected update<T extends BaseModel>(updatedEntity: T): Observable<T> {
     return this.httpClient.put<T>(`${this.apiUrl}/${updatedEntity.id}`, updatedEntity, this.httpOptions);
   }
 
-  delete<T extends BaseModel>(entityToDelete: T): Observable<T> {
+  protected delete<T extends BaseModel>(entityToDelete: T): Observable<T> {
     return this.httpClient.delete<T>(`${this.apiUrl}/${entityToDelete.id}`, this.httpOptions);
   }
 
