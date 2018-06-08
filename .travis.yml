@@ -25,8 +25,8 @@ matrix:
         directories:
           - "node_modules"
       before_install:
-        - bash yarn-install.sh
         - cd Collab.Interface
+        - npm install --global yarn
         - yarn global add @angular/cli
       install:
         - yarn
