@@ -17,35 +17,35 @@ export class UserService extends HttpService {
     super(http, environment.usersUrl);
    }
 
-  getAllUsers(): Observable<User[]> {
+  public getAllUsers(): Observable<User[]> {
     return this.getAll<User>()
       .pipe(
         catchError(this.handleError<User[]>('getAllUsers', []))
       );
   }
 
-  getUserById(id: number): Observable<User> {
+  public getUserById(id: number): Observable<User> {
     return this.getById<User>(id)
       .pipe(
         catchError(this.handleError<User>(`getUserbyId id=${id}`))
       );
   }
 
-  createUser(userToCreate: User): Observable<User> {
+  public createUser(userToCreate: User): Observable<User> {
     return this.create<User>(userToCreate)
       .pipe(
         catchError(this.handleError<User>(`createUser`, userToCreate))
       );
   }
 
-  updateUser(updatedUser: User): Observable<User> {
+  public updateUser(updatedUser: User): Observable<User> {
     return this.update<User>(updatedUser)
       .pipe(
         catchError(this.handleError('updateUser', updatedUser))
       );
   }
 
-  deleteUser(userToBeDelete: User): Observable<User> {
+  public deleteUser(userToBeDelete: User): Observable<User> {
     return this.delete<User>(userToBeDelete)
       .pipe(
         catchError(this.handleError<User>(`deleteUser`, userToBeDelete))

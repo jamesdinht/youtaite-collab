@@ -15,38 +15,38 @@ export class ProjectService extends HttpService {
     super(http, environment.projectsUrl);
   }
 
-  getAllProjects(): Observable<Project[]> {
-    return this.getAll<Project>()
+  public getAllProjects(): Observable<Project[]> {
+    return super.getAll<Project>()
       .pipe(
-        catchError(this.handleError<Project[]>('getAllProjects', []))
+        catchError(super.handleError<Project[]>('getAllProjects', []))
       );
   }
 
-  getProjectById(id: number): Observable<Project> {
-    return this.getById<Project>(id)
+  public getProjectById(id: number): Observable<Project> {
+    return super.getById<Project>(id)
       .pipe(
-        catchError(this.handleError<Project>(`getProjectById id=${id}`))
+        catchError(super.handleError<Project>(`getProjectById id=${id}`))
       );
   }
 
-  createProject(projectToCreate: Project): Observable<Project> {
-    return this.create<Project>(projectToCreate)
+  public createProject(projectToCreate: Project): Observable<Project> {
+    return super.create<Project>(projectToCreate)
       .pipe(
-        catchError(this.handleError<Project>('createProject', projectToCreate))
+        catchError(super.handleError<Project>('createProject', projectToCreate))
       );
   }
 
-  updateProject(updatedProject: Project): Observable<Project> {
-    return this.update<Project>(updatedProject)
+  public updateProject(updatedProject: Project): Observable<Project> {
+    return super.update<Project>(updatedProject)
       .pipe(
-        catchError(this.handleError<Project>('updateProject', updatedProject))
+        catchError(super.handleError<Project>('updateProject', updatedProject))
       );
   }
 
-  deleteProject(projectToDelete: Project): Observable<Project> {
-    return this.delete<Project>(projectToDelete)
+  public deleteProject(projectToDelete: Project): Observable<Project> {
+    return super.delete<Project>(projectToDelete)
       .pipe(
-        catchError(this.handleError<Project>('deleteProject', projectToDelete))
+        catchError(super.handleError<Project>('deleteProject', projectToDelete))
       );
   }
 }
