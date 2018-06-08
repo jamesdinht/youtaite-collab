@@ -31,10 +31,10 @@ export class UserService extends HttpService {
       );
   }
 
-  createUser(user: User): Observable<User> {
-    return this.create<User>(user)
+  createUser(userToCreate: User): Observable<User> {
+    return this.create<User>(userToCreate)
       .pipe(
-        catchError(this.handleError<User>(`createUser`, user))
+        catchError(this.handleError<User>(`createUser`, userToCreate))
       );
   }
 
@@ -45,10 +45,10 @@ export class UserService extends HttpService {
       );
   }
 
-  deleteUser(userToBeDeleted: User): Observable<User> {
-    return this.delete<User>(userToBeDeleted)
+  deleteUser(userToBeDelete: User): Observable<User> {
+    return this.delete<User>(userToBeDelete)
       .pipe(
-        catchError(this.handleError<User>(`deleteUser`, userToBeDeleted))
+        catchError(this.handleError<User>(`deleteUser`, userToBeDelete))
       );
   }
 }
