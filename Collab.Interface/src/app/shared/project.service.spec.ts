@@ -80,4 +80,17 @@ describe('ProjectService', () => {
     const request = httpMock.expectOne(`${environment.projectsUrl}/${fakeProject.id}`);
     expect(request.request.method).toBe('GET');
   });
+
+  it('should create a new Project correctly', () => {
+    const fakeProject = new Project(1, 'Test');
+
+    service.createProject(fakeProject).subscribe(response => {
+      expect(response).toBeTruthy();
+      expect(response).toEqual(fakeProject);
+    });
+
+    const request = httpMock.expectOne(`${environment.projectsUrl}`);
+    expect(request.request.method).toBe('POST');
+  });
+
 });
