@@ -1,9 +1,10 @@
-export class User {
-    id: number;
+import { BaseModel } from './BaseModel';
+
+export class User extends BaseModel {
     nickname: string;
 
     constructor(id: number, nickname: string) {
-        this.id = id;
+        super(id);
         this.nickname = nickname;
     }
 }
