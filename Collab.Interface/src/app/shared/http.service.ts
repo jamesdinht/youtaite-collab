@@ -35,4 +35,14 @@ export class HttpService {
   delete<T extends BaseModel>(entityToDelete: T): Observable<T> {
     return this.httpClient.delete<T>(`${this.apiUrl}/${entityToDelete.id}`, this.httpOptions);
   }
+
+  protected handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // Log the error
+      console.log(`${operation} error`);
+      console.error(`${error.name}: ${error.message}`);
+
+      return of(result as T);
+    };
+  }
 }

@@ -51,14 +51,4 @@ export class UserService extends HttpService {
         catchError(this.handleError<User>(`deleteUser`, userToBeDeleted))
       );
   }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // Log the error
-      console.log(`${operation} error`);
-      console.error(`${error.name}: ${error.message}`);
-
-      return of(result as T);
-    };
-  }
 }
