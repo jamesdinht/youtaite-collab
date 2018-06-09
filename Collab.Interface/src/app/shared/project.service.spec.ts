@@ -93,4 +93,37 @@ describe('ProjectService', () => {
     expect(request.request.method).toBe('POST');
   });
 
+  it('should update a Project correctly', () => {
+    // TODO: Look into testing PUT requests correctly
+    const fakeProject = new Project(1, 'Test');
+    const updatedProject = new Project(1, 'Update');
+
+    service.updateProject(updatedProject).subscribe(response => {
+      expect(response).toBeTruthy();
+      expect(response).toEqual(updatedProject);
+    });
+
+    const request = httpMock.expectOne(`${environment.projectsUrl}/${fakeProject.id}`);
+    expect(request.request.method).toBe('PUT');
+
+    request.flush(
+      updatedProject
+    );
+  });
+
+  it('should delete a Project correctly', () => {
+    const fakeProject = new Project(1, 'Test');
+
+    service.deleteProject(fakeProject).subscribe(response => {
+      expect(response).toBeTruthy();
+      expect(response).toEqual(fakeProject);
+    });
+
+    const request = httpMock.expectOne(`${environment.projectsUrl}/${fakeProject.id}`);
+    expect(request.request.method).toBe('DELETE');
+
+    request.flush(
+      fakeProject
+    );
+  });
 });
