@@ -10,6 +10,7 @@ namespace Collab.API.Controllers
     /// Abstract controller. Contains all the common logic between the controllers.
     /// </summary>
     /// <typeparam name="TEntity">A data entity.</typeparam>
+    [Route("api/[controller]")]
     public abstract class AController<TEntity> : Controller where TEntity : BaseModel
     {
         protected readonly IRepository<TEntity> db;
