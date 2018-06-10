@@ -39,8 +39,8 @@ namespace Collab.API.Models.Data
 
             var projects = new Project[]
             {
-                new Project() { ProjectName = "Close to You", Group = groups[0] },
-                new Project() { ProjectName = "Bad Overwatch Players", Group = groups[0] }
+                new Project() { Name = "Close to You", Group = groups[0] },
+                new Project() { Name = "Bad Overwatch Players", Group = groups[0] }
             };
 
             var groupMembers = new GroupMember[]
@@ -106,7 +106,7 @@ namespace Collab.API.Models.Data
             }
 
 
-            if (context.GroupMembers.Any())
+            if (!context.GroupMembers.Any())
             {
                 foreach (GroupMember gm in groupMembers)
                 {
@@ -119,19 +119,21 @@ namespace Collab.API.Models.Data
                 {
                     context.Entry(gm).State = EntityState.Detached;
                 }
+
+                foreach (User u in users)
+                {
+                    context.Users.Update(u);
+                    context.Entry(u).State = EntityState.Detached;
+                }
+
+                foreach (Group g in groups)
+                {
+                    context.Groups.Update(g);
+                    context.Entry(g).State = EntityState.Detached;
+                }
             }
 
-            foreach (User u in users)
-            {
-                context.Users.Update(u);
-                context.Entry(u).State = EntityState.Detached;
-            }
-
-            foreach (Group g in groups)
-            {
-                context.Groups.Update(g);
-                context.Entry(g).State = EntityState.Detached;
-            }
+            
 
             context.SaveChanges();
         }
