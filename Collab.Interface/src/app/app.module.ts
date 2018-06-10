@@ -7,18 +7,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatButtonModule } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
+import { ProjectsComponent } from './projects/projects.component';
 
 export const appRoutes: Routes = [
   {
     path: 'users',
     component: UsersComponent
   },
+  {
+    path: 'projects',
+    component: ProjectsComponent
+  }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent
+    UsersComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
