@@ -7,6 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { appRoutes } from 'src/app/app.module';
 import { Location } from '@angular/common';
+import { ProjectsComponent } from 'src/app/projects/projects.component';
 
 describe('AppComponent', () => {
 
@@ -17,7 +18,8 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        UsersComponent
+        UsersComponent,
+        ProjectsComponent
       ],
       imports: [
         HttpClientModule,
