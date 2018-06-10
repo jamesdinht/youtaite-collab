@@ -1,19 +1,19 @@
-import { TestBed, async, tick, fakeAsync } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { UsersComponent } from './users/users.component';
-import { HttpClientModule } from '@angular/common/http';
+import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { MatToolbarModule } from '@angular/material';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
-import { appRoutes } from 'src/app/app.module';
-import { Location } from '@angular/common';
+import { AppComponent } from 'src/app/app.component';
+import { UsersComponent } from 'src/app/users/users.component';
 import { ProjectsComponent } from 'src/app/projects/projects.component';
 import { HomeComponent } from 'src/app/home/home.component';
+import { TopNavbarComponent } from 'src/app/top-navbar/top-navbar.component';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
+import { appRoutes } from 'src/app/app.module';
 
 describe('AppComponent', () => {
 
-  let location: Location;
   let router: Router;
+  let location: Location;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,10 +21,10 @@ describe('AppComponent', () => {
         AppComponent,
         HomeComponent,
         UsersComponent,
-        ProjectsComponent
+        ProjectsComponent,
+        TopNavbarComponent
       ],
       imports: [
-        HttpClientModule,
         MatToolbarModule,
         RouterTestingModule.withRoutes(appRoutes),
       ]
@@ -45,14 +45,7 @@ describe('AppComponent', () => {
   it(`should have as title 'Youtaite Collab'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Youtaite Collab');
-  }));
-
-  it('should render material toolbar', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('mat-toolbar'));
+    expect(app.title).toBe('Youtaite Collab');
   }));
 
   it('should navigate to users on "/users"', fakeAsync(() => {

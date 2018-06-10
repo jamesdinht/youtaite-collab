@@ -9,6 +9,7 @@ import { MatToolbarModule, MatButtonModule } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
 import { ProjectsComponent } from './projects/projects.component';
 import { HomeComponent } from './home/home.component';
+import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 
 export const appRoutes: Routes = [
   {
@@ -30,7 +31,8 @@ export const appRoutes: Routes = [
     AppComponent,
     UsersComponent,
     ProjectsComponent,
-    HomeComponent
+    HomeComponent,
+    TopNavbarComponent
   ],
   imports: [
     BrowserModule,
