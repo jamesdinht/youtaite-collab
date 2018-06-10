@@ -14,7 +14,8 @@ namespace Collab.API.Models.Config
             builder.Property(p => p.Id)
                 .HasColumnName("ProjectId");
 
-            builder.Property(p => p.ProjectName)
+            builder.Property(p => p.Name)
+                .HasColumnName("ProjectName")
                 .IsRequired();
 
             builder.AddDateCreatedColumn();

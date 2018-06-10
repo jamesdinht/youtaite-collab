@@ -5,7 +5,7 @@ namespace Collab.API.Models
     /// </summary>
     public class Project : BaseModel
     {
-        public string ProjectName { get; set; }
+        public string Name { get; set; }
         
         // Foreign key Group
         public virtual Group Group { get; set; }

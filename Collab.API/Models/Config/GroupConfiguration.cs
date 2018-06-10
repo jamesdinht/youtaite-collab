@@ -13,6 +13,9 @@ namespace Collab.API.Models.Config
             builder.Property(g => g.Id)
                 .HasColumnName("GroupId")
                 .UseSqlServerIdentityColumn();
+
+            builder.Property(g => g.Name)
+                .HasColumnName("GroupName");
                 
             builder.AddDateCreatedColumn();
             builder.AddLastUpdatedColumn();
