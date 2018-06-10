@@ -53,4 +53,10 @@ describe('AppComponent', () => {
     tick();
     expect(location.path()).toBe('/users');
   }));
+
+  it('should navigate to projects on "/projects"', fakeAsync(() => {
+    router.navigate(['projects']);
+    tick();
+    expect(location.path()).toBe('/projects');
+  }));
 });
