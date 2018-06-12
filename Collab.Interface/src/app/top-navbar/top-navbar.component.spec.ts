@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { TopNavbarComponent } from './top-navbar.component';
-import { MatToolbarModule } from '@angular/material';
+import { MatToolbarModule, MatCardModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { appRoutes } from 'src/app/app.module';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { HomeComponent } from 'src/app/home/home.component';
 import { UsersComponent } from 'src/app/users/users.component';
 import { ProjectsComponent } from 'src/app/projects/projects.component';
+import { ProjectDetailsComponent } from '../project-details/project-details.component';
 
 describe('TopNavbarComponent', () => {
   let component: TopNavbarComponent;
@@ -21,11 +22,13 @@ describe('TopNavbarComponent', () => {
         HomeComponent,
         UsersComponent,
         ProjectsComponent,
+        ProjectDetailsComponent,
         TopNavbarComponent
       ],
       imports: [
         HttpClientTestingModule,
         MatToolbarModule,
+        MatCardModule,
         RouterTestingModule.withRoutes(appRoutes),
       ]
     })

@@ -1,9 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectsComponent } from './projects.component';
-import { HttpClientTestingBackend } from '@angular/common/http/testing/src/backend';
 import { ProjectService } from '../shared/project.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatCardModule, MatButtonModule } from '@angular/material';
+import { ProjectDetailsComponent } from '../project-details/project-details.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { appRoutes } from 'src/app/app.module';
+import { HomeComponent } from 'src/app/home/home.component';
+import { UsersComponent } from 'src/app/users/users.component';
 
 describe('ProjectsComponent', () => {
   let component: ProjectsComponent;
@@ -11,9 +16,15 @@ describe('ProjectsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectsComponent ],
+      declarations: [
+        ProjectsComponent,
+        ProjectDetailsComponent
+      ],
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        MatCardModule,
+        MatButtonModule,
+        RouterTestingModule.withRoutes([]),
       ],
       providers: [
         ProjectService

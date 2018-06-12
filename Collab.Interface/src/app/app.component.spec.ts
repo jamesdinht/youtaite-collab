@@ -1,5 +1,5 @@
 import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
-import { MatToolbarModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatCardModule } from '@angular/material';
 import { AppComponent } from 'src/app/app.component';
 import { UsersComponent } from 'src/app/users/users.component';
 import { ProjectsComponent } from 'src/app/projects/projects.component';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { appRoutes } from 'src/app/app.module';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
 
 describe('AppComponent', () => {
 
@@ -22,10 +23,13 @@ describe('AppComponent', () => {
         HomeComponent,
         UsersComponent,
         ProjectsComponent,
-        TopNavbarComponent
+        TopNavbarComponent,
+        ProjectDetailsComponent
       ],
       imports: [
         MatToolbarModule,
+        MatCardModule,
+        MatButtonModule,
         RouterTestingModule.withRoutes(appRoutes),
       ]
     }).compileComponents();
