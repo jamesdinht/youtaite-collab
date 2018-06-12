@@ -11,11 +11,12 @@ import { Project } from 'src/app/models/Project';
 })
 export class ProjectDetailsComponent implements OnInit {
 
-  project = new Project();
+  project: Project;
 
   constructor(private projectService: ProjectService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.project = new Project(null, null);
     const id = +this.route.snapshot.params['id'];
 
     this.projectService.getProjectById(id)
