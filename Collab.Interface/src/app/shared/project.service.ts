@@ -5,14 +5,15 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Project } from 'src/app/models/Project';
 import { catchError } from 'rxjs/operators';
+import { LogService } from 'src/app/shared/log.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService extends HttpService {
 
-  constructor(private http: HttpClient) {
-    super(http, environment.projectsUrl);
+  constructor(private http: HttpClient, private logService: LogService) {
+    super(http, logService, environment.projectsUrl);
   }
 
   public getAllProjects(): Observable<Project[]> {

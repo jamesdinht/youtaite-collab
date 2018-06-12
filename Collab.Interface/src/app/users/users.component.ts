@@ -26,9 +26,7 @@ export class UsersComponent implements OnInit {
       response => {
         this.users = response;
         this.operationSuccess = true;
-      },
-      errorResponse => this.onError(errorResponse, 'getAllUsers'),
-      () => this.onCompleted('getAllUsers')
+      }
     );
   }
 
@@ -37,9 +35,7 @@ export class UsersComponent implements OnInit {
       response => {
         this.selectedUser = response;
         this.operationSuccess = true;
-      },
-      errorResponse => this.onError(errorResponse, 'getUserById'),
-      () => this.onCompleted('getUserById')
+      }
     );
   }
 
@@ -49,9 +45,7 @@ export class UsersComponent implements OnInit {
         this.users.push(response);
         this.selectedUser = response;
         this.operationSuccess = true;
-      },
-      errorResponse => this.onError(errorResponse, 'createUser'),
-      () => this.onCompleted('createUser')
+      }
     );
   }
 
@@ -60,9 +54,7 @@ export class UsersComponent implements OnInit {
       response => {
         this.selectedUser = response;
         this.operationSuccess = true;
-      },
-      errorResponse => this.onError(errorResponse, 'updateUser'),
-      () => this.onCompleted('updateUser')
+      }
     );
   }
 
@@ -70,18 +62,7 @@ export class UsersComponent implements OnInit {
     return this.userService.deleteUser(userToDelete).subscribe(
       response => {
         this.users.findIndex(user => user.id === userToDelete.id);
-      },
-      errorResponse => this.onError(errorResponse, 'deleteUser'),
-      () => this.onCompleted('deleteUser')
+      }
     );
-  }
-
-  onError(errorResponse: any, operation: string) {
-    this.operationSuccess = false;
-    console.error(`${operation} errored with: ${errorResponse}`);
-  }
-
-  onCompleted(operation: string) {
-    console.log(`${operation} completed`);
   }
 }

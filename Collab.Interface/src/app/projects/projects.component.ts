@@ -22,9 +22,7 @@ export class ProjectsComponent implements OnInit {
     return this.projectService.getAllProjects().subscribe(
       data => {
         this.projects = data;
-      },
-      error => { },
-      () => { }
+      }
     );
   }
 

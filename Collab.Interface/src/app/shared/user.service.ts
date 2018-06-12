@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from 'src/app/models/user';
 import { HttpService } from 'src/app/shared/http.service';
+import { LogService } from 'src/app/shared/log.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,8 @@ import { HttpService } from 'src/app/shared/http.service';
 
 export class UserService extends HttpService {
 
-
-  constructor(private http: HttpClient) {
-    super(http, environment.usersUrl);
+  constructor(private http: HttpClient, private logService: LogService) {
+    super(http, logService, environment.usersUrl);
    }
 
   public getAllUsers(): Observable<User[]> {

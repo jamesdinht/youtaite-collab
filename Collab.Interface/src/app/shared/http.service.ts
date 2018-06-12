@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { BaseModel } from 'src/app/models/BaseModel';
+import { LogService } from './log.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor(protected httpClient: HttpClient, protected apiUrl: string) { }
+  constructor(protected httpClient: HttpClient, private logger: LogService, protected apiUrl: string) { }
 
   protected httpOptions = {
     headers: new HttpHeaders({
@@ -37,10 +38,9 @@ export class HttpService {
   }
 
   protected handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+    return (error: Error): Observable<T> => {
       // Log the error
-      console.log(`${operation} error`);
-      console.error(`${error.name}: ${error.message}`);
+      this.logger.logError(error, operation);
 
       return of(result as T);
     };
