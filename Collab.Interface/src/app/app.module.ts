@@ -5,11 +5,12 @@ import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatButtonModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatListModule, MatCardModule } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
 import { ProjectsComponent } from './projects/projects.component';
 import { HomeComponent } from './home/home.component';
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
 
 export const appRoutes: Routes = [
   {
@@ -21,9 +22,13 @@ export const appRoutes: Routes = [
     component: UsersComponent
   },
   {
+    path: 'projects/:id',
+    component: ProjectDetailsComponent
+  },
+  {
     path: 'projects',
     component: ProjectsComponent
-  }
+  },
 ];
 
 @NgModule({
@@ -32,7 +37,8 @@ export const appRoutes: Routes = [
     UsersComponent,
     ProjectsComponent,
     HomeComponent,
-    TopNavbarComponent
+    TopNavbarComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +49,8 @@ export const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatListModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
