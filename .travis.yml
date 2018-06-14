@@ -33,3 +33,20 @@ matrix:
       script:
         - ng build
         - ng test
+    
+    - language: node_js
+      node_js:
+        - "10.3.0"
+      cache:
+        yarn: true
+        directories:
+          - "node_modules"
+      before_install:
+        - cd Collab.Auth
+        - npm install --global yarn
+        - yarn global add @angular/cli
+      install:
+        - yarn
+      script:
+        - ng build
+        - ng test
