@@ -1,4 +1,3 @@
-# build housing.web
 FROM mhart/alpine-node:10
 WORKDIR /app
 
