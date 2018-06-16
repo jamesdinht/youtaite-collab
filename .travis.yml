@@ -27,7 +27,6 @@ matrix:
       before_install:
         - cd Collab.Interface
         - npm install --global yarn
-        - yarn global add @angular/cli
       install:
         - yarn
       script:
