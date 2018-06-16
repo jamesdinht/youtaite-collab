@@ -5,12 +5,13 @@ import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatButtonModule, MatListModule, MatCardModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatListModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
 import { ProjectsComponent } from './projects/projects.component';
 import { HomeComponent } from './home/home.component';
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { CallbackComponent } from './callback/callback.component';
 
 export const appRoutes: Routes = [
   {
@@ -38,7 +39,8 @@ export const appRoutes: Routes = [
     ProjectsComponent,
     HomeComponent,
     TopNavbarComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ export const appRoutes: Routes = [
     MatButtonModule,
     MatListModule,
     MatCardModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
