@@ -10,6 +10,7 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { UsersComponent } from 'src/app/users/users.component';
 import { ProjectsComponent } from 'src/app/projects/projects.component';
 import { ProjectDetailsComponent } from '../project-details/project-details.component';
+import { AuthService } from 'src/app/shared/auth.service';
 
 describe('TopNavbarComponent', () => {
   let component: TopNavbarComponent;
@@ -30,6 +31,9 @@ describe('TopNavbarComponent', () => {
         MatToolbarModule,
         MatCardModule,
         RouterTestingModule.withRoutes(appRoutes),
+      ],
+      providers: [
+        AuthService
       ]
     })
     .compileComponents();

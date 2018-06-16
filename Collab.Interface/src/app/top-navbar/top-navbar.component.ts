@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-top-navbar',
@@ -11,10 +11,5 @@ export class TopNavbarComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-  }
-
-
-  login() {
-    this.authService.login();
   }
 }
