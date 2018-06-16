@@ -3,5 +3,6 @@
   <a mat-button [routerLink]="[ '/users' ]" routerLinkActive="active" title="Users">Users</a>
   <a mat-button [routerLink]="[ '/projects' ]" routerLinkActive="active" title="Projects">Projects</a>
   <span class="fill-space"></span>
-  <button mat-button (click)="login()">Login</button>
+  <button mat-button *ngIf="!authService.isAuthenticated()" (click)="authService.login()">Login</button>
+  <button mat-button *ngIf="authService.isAuthenticated()" (click)="authService.logout()">Logout</button>
 </mat-toolbar>
