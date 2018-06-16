@@ -29,7 +29,7 @@ services:
     build:
       context: Collab.API
       dockerfile: Dockerfile
-    image: collab-webapi:0.1.0
+    image: jamesdinht/collab-webapi:0.1.0
     ports: 
       - "9000:80"
     deploy:
@@ -41,7 +41,7 @@ services:
     build:
       context: Collab.Interface
       dockerfile: Dockerfile
-    image: collab-interface:0.1.0
+    image: jamesdinht/collab-interface:0.1.0
     ports:
       - "9100:4200"
     deploy:
