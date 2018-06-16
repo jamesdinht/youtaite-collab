@@ -81,3 +81,4 @@ Visit the wiki [here](https://github.com/jamesdinht/youtaite-collab/wiki).
   - [Vagrant](https://www.vagrantup.com) - Virtual Machine for isolated development environment
   - [VirtualBox](https://www.virtualbox.org) - Vagrant provider
   - [Yarn](https://yarnpkg.com/en/) - Package manager
+  - [Auth0](https://auth0.com) - Authentication and authorization as a service
