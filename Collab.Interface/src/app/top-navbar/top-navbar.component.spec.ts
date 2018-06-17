@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { TopNavbarComponent } from './top-navbar.component';
-import { MatToolbarModule, MatCardModule } from '@angular/material';
+import { MatToolbarModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { appRoutes } from 'src/app/app.module';
@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 import { HomeComponent } from 'src/app/home/home.component';
 import { UsersComponent } from 'src/app/users/users.component';
 import { ProjectsComponent } from 'src/app/projects/projects.component';
-import { ProjectDetailsComponent } from '../project-details/project-details.component';
+import { ProjectDetailsComponent } from 'src/app/project-details/project-details.component';
 import { AuthService } from 'src/app/shared/auth.service';
+import { CallbackComponent } from 'src/app/callback/callback.component';
 
 describe('TopNavbarComponent', () => {
   let component: TopNavbarComponent;
@@ -24,12 +25,14 @@ describe('TopNavbarComponent', () => {
         UsersComponent,
         ProjectsComponent,
         ProjectDetailsComponent,
-        TopNavbarComponent
+        TopNavbarComponent,
+        CallbackComponent
       ],
       imports: [
         HttpClientTestingModule,
         MatToolbarModule,
         MatCardModule,
+        MatProgressSpinnerModule,
         RouterTestingModule.withRoutes(appRoutes),
       ],
       providers: [

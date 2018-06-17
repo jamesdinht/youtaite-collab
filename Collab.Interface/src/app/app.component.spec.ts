@@ -1,5 +1,5 @@
 import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
-import { MatToolbarModule, MatButtonModule, MatCardModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 import { AppComponent } from 'src/app/app.component';
 import { UsersComponent } from 'src/app/users/users.component';
 import { ProjectsComponent } from 'src/app/projects/projects.component';
@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { appRoutes } from 'src/app/app.module';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { CallbackComponent } from './callback/callback.component';
 
 describe('AppComponent', () => {
 
@@ -24,12 +25,14 @@ describe('AppComponent', () => {
         UsersComponent,
         ProjectsComponent,
         TopNavbarComponent,
-        ProjectDetailsComponent
+        ProjectDetailsComponent,
+        CallbackComponent
       ],
       imports: [
         MatToolbarModule,
         MatCardModule,
         MatButtonModule,
+        MatProgressSpinnerModule,
         RouterTestingModule.withRoutes(appRoutes),
       ]
     }).compileComponents();
