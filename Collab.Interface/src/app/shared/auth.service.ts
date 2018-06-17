@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
 import { LogService } from 'src/app/shared/log.service';
+import { Config } from 'src/app/authconfig';
 
 (window as any).global = window;
 
@@ -10,13 +11,14 @@ import { LogService } from 'src/app/shared/log.service';
 })
 export class AuthService {
 
+  config = new Config();
   auth0 = new auth0.WebAuth({
-    clientID: 'c6DwkGblBC8vr9lnLFPpJ5a79MeEkeuc',
-    domain: 'jamesdinht.auth0.com',
-    responseType: 'token id_token',
-    audience: 'https://jamesdinht.auth0.com/userinfo',
-    redirectUri: 'http://localhost:9100/callback',
-    scope: 'openid'
+    clientID: this.config.AUTH_CONFIG.CLIENT_ID,
+    domain: this.config.AUTH_CONFIG.CLIENT_DOMAIN,
+    responseType: this.config.AUTH_CONFIG.RESPONSETYPE,
+    audience: this.config.AUTH_CONFIG.AUDIENCE,
+    redirectUri: this.config.AUTH_CONFIG.REDIRECT,
+    scope: this.config.AUTH_CONFIG.SCOPE
   });
 
   constructor(private router: Router, private logger: LogService) { }
@@ -52,7 +54,11 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     // Go back to the home route
-    this.router.navigate(['']);
+    this.auth0.logout({
+      returnTo: this.config.AUTH_CONFIG.RETURNTO,
+      clientID: this.config.AUTH_CONFIG.CLIENT_ID,
+      federated: true
+    });
   }
 
   public isAuthenticated(): boolean {
