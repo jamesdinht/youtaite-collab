@@ -30,6 +30,10 @@ export const appRoutes: Routes = [
     path: 'projects',
     component: ProjectsComponent
   },
+  {
+    path: 'callback',
+    component: CallbackComponent
+  }
 ];
 
 @NgModule({
