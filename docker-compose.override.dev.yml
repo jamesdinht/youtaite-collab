@@ -35,7 +35,7 @@ services:
     networks:
       - collabnetwork
     volumes:
-      - /Collab.API/appsettings.Development.json:/app/appsettings.Development.json
+      - /vagrant/Collab.API/appsettings.Development.json:/app/appsettings.Development.json
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 
