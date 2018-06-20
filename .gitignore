@@ -298,3 +298,7 @@ appsettings.*.json
 
 # Ignore sonarqube files
 .sonarqube
+
+# Ignore code coverage reports and files
+coverage/
+coverage.*
