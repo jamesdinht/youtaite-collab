@@ -11,7 +11,8 @@ namespace Collab.API.Controllers
     /// </summary>
     /// <typeparam name="TEntity">A data entity.</typeparam>
     [Route("api/[controller]")]
-    public abstract class AController<TEntity> : Controller where TEntity : BaseModel
+    [ApiController]
+    public abstract class AController<TEntity> : ControllerBase where TEntity : BaseModel
     {
         protected readonly IRepository<TEntity> db;
 
@@ -33,7 +34,7 @@ namespace Collab.API.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Get(int id)
+        public async Task<ActionResult<TEntity>> Get(int id)
         {
             TEntity retrievedEntity = await db.GetByIdAsync(id);
             if (retrievedEntity == null)
@@ -41,14 +42,14 @@ namespace Collab.API.Controllers
                 return NotFound();
             } 
 
-            return Ok(retrievedEntity);
+            return retrievedEntity;
         }
 
         // POST api/[entities]
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Post([FromBody]TEntity entity)
+        public async Task<ActionResult> Post([FromBody]TEntity entity)
         {
             if (!ModelState.IsValid)
             {
@@ -73,7 +74,7 @@ namespace Collab.API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Put(int id, [FromBody]TEntity entity)
+        public async Task<ActionResult> Put(int id, [FromBody]TEntity entity)
         {
             TEntity entityToBeUpdated = await db.GetByIdAsync(id);
             if (entityToBeUpdated == null)
@@ -95,7 +96,7 @@ namespace Collab.API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             TEntity entityToBeDeleted = await db.GetByIdAsync(id);
             if (entityToBeDeleted == null)
