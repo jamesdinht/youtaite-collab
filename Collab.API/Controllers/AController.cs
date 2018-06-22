@@ -51,22 +51,16 @@ namespace Collab.API.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult> Post([FromBody]TEntity entity)
         {
-            if (!ModelState.IsValid)
+            if (entity == null)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
             else
             {
-                if (entity == null)
-                {
-                    return BadRequest();
-                }
-                else
-                {
-                    await db.CreateAsync(entity);
-                    return CreatedAtAction("Get", new { id = entity.Id }, entity);
-                }
+                await db.CreateAsync(entity);
+                return CreatedAtAction("Get", new { id = entity.Id }, entity);
             }
+        
         }
 
         // PUT api/[entities]/5
