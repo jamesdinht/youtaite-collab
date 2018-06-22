@@ -61,7 +61,7 @@ Visit the wiki [here](https://github.com/jamesdinht/youtaite-collab/wiki).
 
 - ### Backend
   - [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) - Development Language
-  - [ASP.NET Core 2.0](https://www.microsoft.com/net/learn/get-started/windows) - Development Framework
+  - [ASP.NET Core 2.1](https://www.microsoft.com/net/learn/get-started/windows) - Development Framework
   - [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2017) - Database
   - [xUnit](http://xunit.github.io/docs/getting-started-dotnet-core) - .NET Testing
 - ### Frontend
