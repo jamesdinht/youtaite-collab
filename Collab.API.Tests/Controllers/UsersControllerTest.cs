@@ -40,7 +40,6 @@ namespace Collab.API.Tests.Controllers
             Assert.NotNull(actionResult);
 
             OkObjectResult result = actionResult as OkObjectResult;
-
             IEnumerable<User> users = result.Value as IEnumerable<User>;
             var enumerator = users.GetEnumerator();
             enumerator.MoveNext();
@@ -55,12 +54,11 @@ namespace Collab.API.Tests.Controllers
             mockRepo.Setup(repo => repo.GetByIdAsync(fakeUser.Id)).ReturnsAsync(fakeUser);
             controller = new UsersController(mockRepo.Object);
 
-            IActionResult actionResult = controller.Get(fakeUser.Id).Result;
+            ActionResult<User> actionResult = controller.Get(fakeUser.Id).Result;
 
             Assert.NotNull(actionResult);
 
-            OkObjectResult result = actionResult as OkObjectResult;
-            User userResult = result.Value as User;
+            User userResult = actionResult.Value;
 
             Assert.NotNull(userResult);
             Assert.Equal(fakeUser.Id, userResult.Id);
@@ -71,13 +69,11 @@ namespace Collab.API.Tests.Controllers
         {
             controller = new UsersController(mockRepo.Object);
 
-            IActionResult actionResult = controller.Get(1234).Result;
+            ActionResult<User> actionResult = controller.Get(1234).Result;
 
             Assert.NotNull(actionResult);
-
-            NotFoundResult result = actionResult as NotFoundResult;
             
-            Assert.NotNull(result);
+            Assert.IsType<NotFoundResult>(actionResult.Result);
         }
 
         [Fact]
