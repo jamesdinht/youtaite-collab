@@ -10,8 +10,8 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { UsersComponent } from 'src/app/users/users.component';
 import { ProjectsComponent } from 'src/app/projects/projects.component';
 import { ProjectDetailsComponent } from 'src/app/project-details/project-details.component';
-import { AuthService } from 'src/app/shared/auth.service';
-import { CallbackComponent } from 'src/app/callback/callback.component';
+import { AuthService } from 'src/app/auth/auth/auth.service';
+import { CallbackComponent } from 'src/app/auth/callback/callback.component';
 
 describe('TopNavbarComponent', () => {
   let component: TopNavbarComponent;
