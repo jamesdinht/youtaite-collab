@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
 import { LogService } from 'src/app/shared/log.service';
-import { Config } from 'src/app/authconfig';
+import { Config } from 'src/app/auth/authconfig';
 
 (window as any).global = window;
 
