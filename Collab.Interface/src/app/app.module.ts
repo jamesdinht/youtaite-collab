@@ -2,16 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { UsersComponent } from './users/users.component';
 import { HttpClientModule } from '@angular/common/http';
+import { Routes, RouterModule } from '@angular/router';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatButtonModule, MatListModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
-import { Routes, RouterModule } from '@angular/router';
-import { ProjectsComponent } from './projects/projects.component';
-import { HomeComponent } from './home/home.component';
-import { TopNavbarComponent } from './top-navbar/top-navbar.component';
-import { ProjectDetailsComponent } from './project-details/project-details.component';
-import { CallbackComponent } from './callback/callback.component';
+
+import { UsersComponent } from 'src/app/users/users.component';
+import { ProjectsComponent } from 'src/app/projects/projects.component';
+import { HomeComponent } from 'src/app/home/home.component';
+import { TopNavbarComponent } from 'src/app/top-navbar/top-navbar.component';
+import { ProjectDetailsComponent } from 'src/app/project-details/project-details.component';
+import { CallbackComponent } from 'src/app/auth/callback/callback.component';
 
 export const appRoutes: Routes = [
   {
