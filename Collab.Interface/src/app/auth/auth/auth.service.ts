@@ -11,6 +11,8 @@ import { Config } from 'src/app/auth/authconfig';
 })
 export class AuthService {
 
+  userProfile: any;
+
   config = new Config();
   auth0 = new auth0.WebAuth({
     clientID: this.config.AUTH_CONFIG.CLIENT_ID,
@@ -65,5 +67,19 @@ export class AuthService {
     // Check whether the current time is past the Access Token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
     return new Date().getTime() < expiresAt;
+  }
+
+  public getProfile(callback): void {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('Access Token must exist to fetch profile');
+    }
+
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+      }
+      callback(err, profile);
+    });
   }
 }

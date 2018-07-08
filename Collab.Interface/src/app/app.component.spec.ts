@@ -13,6 +13,7 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { TopNavbarComponent } from 'src/app/top-navbar/top-navbar.component';
 import { ProjectDetailsComponent } from 'src/app/project-details/project-details.component';
 import { CallbackComponent } from 'src/app/auth/callback/callback.component';
+import { ProfileComponent } from './profile/profile.component';
 
 describe('AppComponent', () => {
 
@@ -28,7 +29,8 @@ describe('AppComponent', () => {
         ProjectsComponent,
         TopNavbarComponent,
         ProjectDetailsComponent,
-        CallbackComponent
+        CallbackComponent,
+        ProfileComponent
       ],
       imports: [
         MatToolbarModule,

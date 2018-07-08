@@ -12,6 +12,7 @@ import { ProjectsComponent } from 'src/app/projects/projects.component';
 import { ProjectDetailsComponent } from 'src/app/project-details/project-details.component';
 import { AuthService } from 'src/app/auth/auth/auth.service';
 import { CallbackComponent } from 'src/app/auth/callback/callback.component';
+import { ProfileComponent } from 'src/app/profile/profile.component';
 
 describe('TopNavbarComponent', () => {
   let component: TopNavbarComponent;
@@ -26,7 +27,8 @@ describe('TopNavbarComponent', () => {
         ProjectsComponent,
         ProjectDetailsComponent,
         TopNavbarComponent,
-        CallbackComponent
+        CallbackComponent,
+        ProfileComponent
       ],
       imports: [
         HttpClientTestingModule,

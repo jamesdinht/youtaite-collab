@@ -14,6 +14,7 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { TopNavbarComponent } from 'src/app/top-navbar/top-navbar.component';
 import { ProjectDetailsComponent } from 'src/app/project-details/project-details.component';
 import { CallbackComponent } from 'src/app/auth/callback/callback.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const appRoutes: Routes = [
   {
@@ -35,6 +36,10 @@ export const appRoutes: Routes = [
   {
     path: 'callback',
     component: CallbackComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   }
 ];
 
@@ -46,7 +51,8 @@ export const appRoutes: Routes = [
     HomeComponent,
     TopNavbarComponent,
     ProjectDetailsComponent,
-    CallbackComponent
+    CallbackComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

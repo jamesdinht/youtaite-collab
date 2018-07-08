@@ -2,6 +2,7 @@
   <a mat-button [routerLink]="[ '' ]" routerLinkActive="active" title="Home">Youtaite Collab</a>
   <a mat-button [routerLink]="[ '/projects' ]" *ngIf="authService.isAuthenticated()" routerLinkActive="active" title="Projects">Projects</a>
   <span class="fill-space"></span>
+  <a mat-button [routerLink]="[ '/profile' ]" *ngIf="authService.isAuthenticated()" routerLinkActive="active">Profile</a>
   <button mat-button *ngIf="!authService.isAuthenticated()" (click)="authService.login()">Login</button>
   <button mat-button *ngIf="authService.isAuthenticated()" (click)="authService.logout()">Logout</button>
 </mat-toolbar>

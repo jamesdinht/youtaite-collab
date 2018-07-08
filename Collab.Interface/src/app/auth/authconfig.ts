@@ -20,7 +20,7 @@ export class Config {
             AUDIENCE: 'https://jamesdinht.auth0.com/userinfo',
             REDIRECT: 'http://localhost:9100/callback',
             RETURNTO: 'http://localhost:9100/',
-            SCOPE: 'openid'
+            SCOPE: 'openid profile'
         };
     }
 }
