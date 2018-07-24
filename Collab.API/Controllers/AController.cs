@@ -24,7 +24,7 @@ namespace Collab.API.Controllers
         // GET api/[entities]
         [HttpGet]
         [ProducesResponseType(200)]
-        public async Task<IActionResult> Get()
+        public virtual async Task<IActionResult> Get()
         {
             IEnumerable<TEntity> entities = await db.GetAllAsync();
             return Ok(entities);
@@ -34,7 +34,7 @@ namespace Collab.API.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<TEntity>> Get(int id)
+        public virtual async Task<ActionResult<TEntity>> Get(int id)
         {
             TEntity retrievedEntity = await db.GetByIdAsync(id);
             if (retrievedEntity == null)
@@ -49,7 +49,7 @@ namespace Collab.API.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult> Post([FromBody]TEntity entity)
+        public virtual async Task<ActionResult> Post([FromBody]TEntity entity)
         {
             if (entity == null)
             {
@@ -68,7 +68,7 @@ namespace Collab.API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult> Put(int id, [FromBody]TEntity entity)
+        public virtual async Task<ActionResult> Put(int id, [FromBody]TEntity entity)
         {
             TEntity entityToBeUpdated = await db.GetByIdAsync(id);
             if (entityToBeUpdated == null)
@@ -90,7 +90,7 @@ namespace Collab.API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult> Delete(int id)
+        public virtual async Task<ActionResult> Delete(int id)
         {
             TEntity entityToBeDeleted = await db.GetByIdAsync(id);
             if (entityToBeDeleted == null)
