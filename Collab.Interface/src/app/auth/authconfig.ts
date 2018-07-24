@@ -17,10 +17,10 @@ export class Config {
             CLIENT_ID: 'c6DwkGblBC8vr9lnLFPpJ5a79MeEkeuc',
             CLIENT_DOMAIN: 'jamesdinht.auth0.com',
             RESPONSETYPE: 'token id_token',
-            AUDIENCE: 'https://jamesdinht.auth0.com/userinfo',
+            AUDIENCE: 'http://localhost:9000/auth',
             REDIRECT: 'http://localhost:9100/callback',
             RETURNTO: 'http://localhost:9100/',
-            SCOPE: 'openid profile'
+            SCOPE: 'openid profile read:projects'
         };
     }
 }

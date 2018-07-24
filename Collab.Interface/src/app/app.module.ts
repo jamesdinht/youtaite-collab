@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +15,7 @@ import { TopNavbarComponent } from 'src/app/top-navbar/top-navbar.component';
 import { ProjectDetailsComponent } from 'src/app/project-details/project-details.component';
 import { CallbackComponent } from 'src/app/auth/callback/callback.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 
 export const appRoutes: Routes = [
   {
@@ -67,7 +68,13 @@ export const appRoutes: Routes = [
     MatCardModule,
     MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
