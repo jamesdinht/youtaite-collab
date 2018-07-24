@@ -19,6 +19,9 @@ using Collab.API.Models;
 using Collab.API.Models.Context;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Collab.API.Auth;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Collab.API
 {
@@ -62,6 +65,23 @@ namespace Collab.API
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            string domain = $"https://{Configuration["Auth0:Domain"]}/";
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => 
+            {
+                options.Authority = domain;
+                options.Audience = Configuration["Auth0:ApiIdentifier"];
+            });
+
+            // TODO: Figure out how to implement role- or policy-based authorization properly
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("read:projects", policy => policy.Requirements.Add(new HasScopeRequirement("read:projects", domain)));
+            });
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -78,6 +98,7 @@ namespace Collab.API
             services.AddTransient<IRepository<Group>, GroupRepository>();
             services.AddTransient<IRepository<Project>, ProjectRepository>();
             services.AddTransient<IRepository<Role>, RoleRepository>();
+            services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,6 +117,7 @@ namespace Collab.API
             app.UseCookiePolicy();
             
             app.UseCors(CorsPolicy);
+            app.UseAuthentication();
             app.UseMvc();
             
             // Enable middleware to serve generated Swagger and Swagger UI

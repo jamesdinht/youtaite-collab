@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Collab.API.DAL;
 using Collab.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Collab.API.Controllers
@@ -24,6 +25,7 @@ namespace Collab.API.Controllers
         // GET api/[entities]
         [HttpGet]
         [ProducesResponseType(200)]
+        [Authorize]
         public virtual async Task<IActionResult> Get()
         {
             IEnumerable<TEntity> entities = await db.GetAllAsync();
