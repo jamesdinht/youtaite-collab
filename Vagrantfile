@@ -3,7 +3,11 @@ Vagrant.require_version ">= 2.0.4"
 
 # Make sure vagrant docker-compose plugin is installed
 unless Vagrant.has_plugin?("vagrant-docker-compose")
-  system("vagrant plugin install vagrant-docker-compose", :chdir=>"/temp") || exit!
+  if system("vagrant plugin install vagrant-docker-compose", chdir=>"/temp")
+    puts "Dependencies installed, please try the command again."
+  else
+    abort "Installation of plugins failed. Aborting."
+  exit
 end
 
 Vagrant.configure("2") do |config|
