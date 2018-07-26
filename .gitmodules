@@ -1,3 +1,6 @@
 [submodule "youtaite-collab.wiki"]
 	path = youtaite-collab.wiki
 	url = https://github.com/jamesdinht/youtaite-collab.wiki.git
+[submodule "Wiki"]
+	path = Wiki
+	url = https://github.com/jamesdinht/youtaite-collab.wiki.git
