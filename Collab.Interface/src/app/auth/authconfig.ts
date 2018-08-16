@@ -20,7 +20,7 @@ export class Config {
             AUDIENCE: 'http://localhost:9000/auth',
             REDIRECT: 'http://localhost:9100/callback',
             RETURNTO: 'http://localhost:9100/',
-            SCOPE: 'openid profile read:projects'
+            SCOPE: 'openid email profile'
         };
     }
 }
