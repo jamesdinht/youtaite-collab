@@ -2,17 +2,17 @@ import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
-import { appRoutes } from 'src/app/app.module';
+import { appRoutes } from './app.module';
 
 import { MatToolbarModule, MatButtonModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 
-import { AppComponent } from 'src/app/app.component';
-import { UsersComponent } from 'src/app/users/users.component';
-import { ProjectsComponent } from 'src/app/projects/projects.component';
-import { HomeComponent } from 'src/app/home/home.component';
-import { TopNavbarComponent } from 'src/app/top-navbar/top-navbar.component';
-import { ProjectDetailsComponent } from 'src/app/project-details/project-details.component';
-import { CallbackComponent } from 'src/app/auth/callback/callback.component';
+import { AppComponent } from './app.component';
+import { UsersComponent } from './users/users.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { HomeComponent } from './home/home.component';
+import { TopNavbarComponent } from './top-navbar/top-navbar.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { CallbackComponent } from './auth/callback/callback.component';
 import { ProfileComponent } from './profile/profile.component';
 
 describe('AppComponent', () => {

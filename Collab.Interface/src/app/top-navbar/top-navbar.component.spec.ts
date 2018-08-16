@@ -4,15 +4,15 @@ import { TopNavbarComponent } from './top-navbar.component';
 import { MatToolbarModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { appRoutes } from 'src/app/app.module';
+import { appRoutes } from '../app.module';
 import { Router } from '@angular/router';
-import { HomeComponent } from 'src/app/home/home.component';
-import { UsersComponent } from 'src/app/users/users.component';
-import { ProjectsComponent } from 'src/app/projects/projects.component';
-import { ProjectDetailsComponent } from 'src/app/project-details/project-details.component';
-import { AuthService } from 'src/app/auth/auth/auth.service';
-import { CallbackComponent } from 'src/app/auth/callback/callback.component';
-import { ProfileComponent } from 'src/app/profile/profile.component';
+import { HomeComponent } from '../home/home.component';
+import { UsersComponent } from '../users/users.component';
+import { ProjectsComponent } from '../projects/projects.component';
+import { ProjectDetailsComponent } from '../project-details/project-details.component';
+import { AuthService } from '../auth/auth/auth.service';
+import { CallbackComponent } from '../auth/callback/callback.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 describe('TopNavbarComponent', () => {
   let component: TopNavbarComponent;

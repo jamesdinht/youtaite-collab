@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { BaseModel } from 'src/app/models/BaseModel';
+import { BaseModel } from '../models/BaseModel';
 import { LogService } from './log.service';
 
 @Injectable({

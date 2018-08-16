@@ -8,12 +8,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatButtonModule, MatListModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 
-import { UsersComponent } from 'src/app/users/users.component';
-import { ProjectsComponent } from 'src/app/projects/projects.component';
-import { HomeComponent } from 'src/app/home/home.component';
-import { TopNavbarComponent } from 'src/app/top-navbar/top-navbar.component';
-import { ProjectDetailsComponent } from 'src/app/project-details/project-details.component';
-import { CallbackComponent } from 'src/app/auth/callback/callback.component';
+import { UsersComponent } from './users/users.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { HomeComponent } from './home/home.component';
+import { TopNavbarComponent } from './top-navbar/top-navbar.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { CallbackComponent } from './auth/callback/callback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 

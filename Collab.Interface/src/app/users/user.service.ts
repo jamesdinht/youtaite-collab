@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { User } from 'src/app/models/user';
+import { User } from '../models/user';
 import { HttpService } from '../shared/http.service';
 import { LogService } from '../shared/log.service';
 

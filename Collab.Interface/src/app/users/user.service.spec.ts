@@ -2,8 +2,8 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { UserService } from './user.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { environment } from 'src/environments/environment';
-import { User } from 'src/app/models/user';
+import { environment } from '../../environments/environment';
+import { User } from '../models/user';
 
 describe('UserService', () => {
   beforeEach(() => {
