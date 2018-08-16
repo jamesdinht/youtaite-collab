@@ -4,8 +4,8 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from 'src/app/models/user';
-import { HttpService } from 'src/app/shared/http.service';
-import { LogService } from 'src/app/shared/log.service';
+import { HttpService } from '../shared/http.service';
+import { LogService } from '../shared/log.service';
 
 @Injectable({
   providedIn: 'root'

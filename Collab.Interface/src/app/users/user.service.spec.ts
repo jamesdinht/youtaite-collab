@@ -55,7 +55,8 @@ describe('UserService', () => {
 
       const id = 1;
       const nickname = 'James';
-      const fakeUser = new User(id, nickname);
+      const email = 'james@test.com';
+      const fakeUser = new User(id, nickname, email);
 
       service.getUserById(id).subscribe(response => {
         expect(response).toBeTruthy();
@@ -85,7 +86,8 @@ describe('UserService', () => {
 
       const id = 1;
       const nickname = 'James';
-      const newUser = new User(1, nickname);
+      const email = 'james@test.com';
+      const newUser = new User(1, nickname, email);
 
       service.createUser(newUser).subscribe(response => {
         expect(response).toBeTruthy();
@@ -102,8 +104,10 @@ describe('UserService', () => {
       const id = 1;
       const nickname = 'James';
       const newNickname = 'Menji';
-      const fakeUser = new User(id, nickname);
-      const updatedUser = new User(id, newNickname);
+      const email = 'james@test.com';
+      const newEmail = 'Menji@test.com';
+      const fakeUser = new User(id, nickname, email);
+      const updatedUser = new User(id, newNickname, newEmail);
 
       service.updateUser(updatedUser).subscribe(response => {
         expect(response).toBeTruthy();
@@ -123,7 +127,8 @@ describe('UserService', () => {
 
       const id = 1;
       const nickname = 'James';
-      const fakeUser = new User(id, nickname);
+      const email = 'james@test.com';
+      const fakeUser = new User(id, nickname, email);
 
       service.deleteUser(fakeUser).subscribe(response => {
         expect(response).toBeTruthy();
