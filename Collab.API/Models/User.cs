@@ -10,6 +10,8 @@ namespace Collab.API.Models
     {
         public string Nickname { get; set; }
 
+        public string EmailAddress { get; set; }
+
         public virtual ICollection<GroupMember> Groups { get; set; }
 
         public virtual ICollection<UserRole> Roles { get; set; }
