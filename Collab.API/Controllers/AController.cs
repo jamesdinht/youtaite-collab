@@ -13,6 +13,7 @@ namespace Collab.API.Controllers
     /// <typeparam name="TEntity">A data entity.</typeparam>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public abstract class AController<TEntity> : ControllerBase where TEntity : BaseModel
     {
         protected readonly IRepository<TEntity> db;
@@ -25,7 +26,6 @@ namespace Collab.API.Controllers
         // GET api/[entities]
         [HttpGet]
         [ProducesResponseType(200)]
-        [Authorize]
         public virtual async Task<IActionResult> Get()
         {
             IEnumerable<TEntity> entities = await db.GetAllAsync();
