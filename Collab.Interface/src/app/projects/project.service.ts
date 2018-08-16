@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from './http.service';
+import { HttpService } from '../shared/http.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { Project } from 'src/app/models/Project';
+import { Project } from '../models/Project';
 import { catchError } from 'rxjs/operators';
-import { LogService } from 'src/app/shared/log.service';
+import { LogService } from '../shared/log.service';
 
 @Injectable({
   providedIn: 'root'

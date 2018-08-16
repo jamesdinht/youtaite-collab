@@ -2,8 +2,8 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { ProjectService } from './project.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Project } from 'src/app/models/Project';
-import { environment } from 'src/environments/environment';
+import { Project } from '../models/Project';
+import { environment } from '../../environments/environment';
 
 describe('ProjectService', () => {
   beforeEach(() => {

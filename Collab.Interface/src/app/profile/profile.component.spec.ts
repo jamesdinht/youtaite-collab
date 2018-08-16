@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileComponent } from './profile.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from 'src/app/auth/auth/auth.service';
+import { AuthService } from '../auth/auth/auth.service';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;

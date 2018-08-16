@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectsComponent } from './projects.component';
-import { ProjectService } from '../shared/project.service';
+import { ProjectService } from './project.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatCardModule, MatButtonModule } from '@angular/material';
 import { ProjectDetailsComponent } from '../project-details/project-details.component';
