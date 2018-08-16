@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth/auth.service';
+import { AuthService } from './auth/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,8 @@ import { AuthService } from 'src/app/auth/auth/auth.service';
 export class AppComponent {
   title = 'Youtaite Collab';
 
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
     authService.handleAuthentication();
+    authService.scheduleRenewal();
   }
 }
