@@ -15,8 +15,16 @@ namespace Collab.API.BLL
     /// <typeparam name="Group">A group of users.</typeparam>
     public class GroupRepository : ARepository<Group>
     {
-        public GroupRepository(CollabContext db)
-            : base(db)
+        protected override DbSet<Group> DbSet
+        {
+            get
+            {
+                return context.Groups;
+            }
+        }
+
+        public GroupRepository(CollabContext context)
+            : base(context)
         { }
     }
 }

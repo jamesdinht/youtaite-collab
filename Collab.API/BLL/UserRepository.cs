@@ -15,8 +15,21 @@ namespace Collab.API.BLL
     /// <typeparam name="User">A user of the application.</typeparam>
     public class UserRepository : ARepository<User>
     {
-        public UserRepository(CollabContext db)
-            : base (db)
+        protected override DbSet<User> DbSet
+        {
+            get
+            {
+                return context.Users;
+            } 
+        }
+
+        public UserRepository(CollabContext context)
+            : base (context)
         { }
+
+        public Task<User> GetByEmail(string emailAddress)
+        {
+            return context.Users.AsNoTracking().SingleOrDefaultAsync(user => user.EmailAddress == emailAddress);
+        }
     }
 }

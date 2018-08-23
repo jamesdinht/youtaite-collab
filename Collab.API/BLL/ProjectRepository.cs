@@ -1,5 +1,6 @@
 using Collab.API.Models;
 using Collab.API.Models.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Collab.API.BLL
 {
@@ -9,8 +10,16 @@ namespace Collab.API.BLL
     /// <typeparam name="Project">A project, typically worked on by one Group.</typeparam>
     public class ProjectRepository : ARepository<Project>
     {
-        public ProjectRepository(CollabContext db)
-            : base(db)
+        protected override DbSet<Project> DbSet
+        {
+            get
+            {
+                return context.Projects;
+            }    
+        }
+        
+        public ProjectRepository(CollabContext context)
+            : base(context)
         { }
     }
 }

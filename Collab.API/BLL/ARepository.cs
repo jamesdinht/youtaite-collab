@@ -16,11 +16,17 @@ namespace Collab.API.BLL
     /// <typeparam name="TEntity">A data entity.</typeparam>
     public abstract class ARepository<TEntity> : IRepository<TEntity> where TEntity : BaseModel
     {
-        protected readonly CollabContext db;
+        protected readonly CollabContext context;
 
-        protected ARepository(CollabContext db)
+        /// <summary>
+        /// Database set, retrieved from concrete implementation
+        /// </summary>
+        /// <value></value>
+        protected abstract DbSet<TEntity> DbSet { get; }
+
+        protected ARepository(CollabContext context)
         {
-            this.db = db;
+            this.context = context;
         }
 
         /// <summary>
@@ -36,8 +42,8 @@ namespace Collab.API.BLL
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            await GetDbSet().AddAsync(entity);
-            await db.SaveChangesAsync();
+            await DbSet.AddAsync(entity);
+            await context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -46,7 +52,7 @@ namespace Collab.API.BLL
         /// <returns>A collection of entities.</returns>
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await GetDbSet().AsNoTracking().ToListAsync();
+            return await DbSet.AsNoTracking().ToListAsync();
         }
 
         /// <summary>
@@ -56,7 +62,7 @@ namespace Collab.API.BLL
         /// <returns>Entity with matching ID.</returns>
         public virtual async Task<TEntity> GetByIdAsync(int id)
         {
-            return await GetDbSet().AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
+            return await DbSet.AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
         }
 
         /// <summary>
@@ -75,17 +81,17 @@ namespace Collab.API.BLL
                 throw new ArgumentNullException(nameof(updatedEntity));
             }
 
-            TEntity entityToUpdate = await GetDbSet().AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
+            TEntity entityToUpdate = await DbSet.AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
             if (entityToUpdate == null)
             {
                 throw new KeyNotFoundException(IncorrectKeyMessage(id));
             }
 
-            db.Entry(updatedEntity).State = EntityState.Modified;
+            context.Entry(updatedEntity).State = EntityState.Modified;
             int rowsAffected = 0;
             try 
             {
-                rowsAffected = await db.SaveChangesAsync();
+                rowsAffected = await context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
@@ -104,14 +110,14 @@ namespace Collab.API.BLL
         /// 
         public virtual async Task<bool> DeleteAsync(int id)
         {
-            TEntity entityToDelete = await GetDbSet().AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
+            TEntity entityToDelete = await DbSet.AsNoTracking().FirstOrDefaultAsync(entity => id == entity.Id);
             if (entityToDelete == null)
             {
                 throw new KeyNotFoundException(IncorrectKeyMessage(id));
             }
 
-            GetDbSet().Remove(entityToDelete);
-            int rowsAffected = await db.SaveChangesAsync();
+            DbSet.Remove(entityToDelete);
+            int rowsAffected = await context.SaveChangesAsync();
 
             return rowsAffected > 0;
         }
@@ -119,18 +125,6 @@ namespace Collab.API.BLL
         protected string IncorrectKeyMessage(int id)
         {
             return $"{typeof(TEntity).Name} with id: {id} does not exist.";
-        }
-
-        /// <summary>
-        /// During runtime, returns the DbSet for the corresponding Repository
-        /// </summary>
-        /// <returns>The DbSet for the corresponding repository. Null, if the set does not exist.</returns>
-        private DbSet<TEntity> GetDbSet()
-        {
-            Type setType = typeof(TEntity);
-            string setName = setType.Name.Pluralize();
-            PropertyInfo set = db.GetType().GetProperty(setName);
-            return set.GetValue(db, null) as DbSet<TEntity>;
         }
     }
 }
