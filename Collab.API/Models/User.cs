@@ -10,7 +10,7 @@ namespace Collab.API.Models
     {
         public string Nickname { get; set; }
 
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
 
         public virtual ICollection<GroupMember> Groups { get; set; }
 

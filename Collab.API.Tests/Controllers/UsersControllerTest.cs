@@ -6,6 +6,8 @@ using Collab.API.DAL;
 using Collab.API.Controllers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Collab.API.BLL;
+using Collab.API.Models.Context;
 
 namespace Collab.API.Tests.Controllers
 {
@@ -17,13 +19,14 @@ namespace Collab.API.Tests.Controllers
 
         public UsersControllerTest()
         {
-            fakeUser = new User { Id = 1, Nickname = "Gerald" };
+            fakeUser = new User { Id = 1, Nickname = "Gerald", Email = "test@test.com" };
             mockRepo = new Mock<IRepository<User>>();
         }
 
         public void Dispose()
         {
             fakeUser = null;
+            mockRepo.Reset();
             mockRepo = null;
             controller = null;
         }
@@ -54,7 +57,7 @@ namespace Collab.API.Tests.Controllers
             mockRepo.Setup(repo => repo.GetByIdAsync(fakeUser.Id)).ReturnsAsync(fakeUser);
             controller = new UsersController(mockRepo.Object);
 
-            ActionResult<User> actionResult = controller.Get(fakeUser.Id).Result;
+            ActionResult<User> actionResult = controller.GetById(fakeUser.Id).Result;
 
             Assert.NotNull(actionResult);
 
@@ -69,11 +72,27 @@ namespace Collab.API.Tests.Controllers
         {
             controller = new UsersController(mockRepo.Object);
 
-            ActionResult<User> actionResult = controller.Get(1234).Result;
+            ActionResult<User> actionResult = controller.GetById(1234).Result;
 
             Assert.NotNull(actionResult);
             
             Assert.IsType<NotFoundResult>(actionResult.Result);
+        }
+
+        [Fact(Skip="Figure out how to solve the InvalidCastException")]
+        
+        public void Get_ByValidEmail_ShouldReturnAUser()
+        {
+            controller = new UsersController(mockRepo.Object);
+
+            ActionResult<User> actionResult = controller.GetByEmail(fakeUser.Email).Result;
+
+            Assert.NotNull(actionResult);
+            
+            User userResult = actionResult.Value;
+            
+            Assert.NotNull(userResult);
+            Assert.Equal(fakeUser.Email, userResult.Email);
         }
 
         [Fact]

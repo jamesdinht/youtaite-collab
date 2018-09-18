@@ -27,9 +27,9 @@ namespace Collab.API.BLL
             : base (context)
         { }
 
-        public Task<User> GetByEmail(string emailAddress)
+        public Task<User> GetByEmail(string email)
         {
-            return context.Users.AsNoTracking().SingleOrDefaultAsync(user => user.EmailAddress == emailAddress);
+            return context.Users.AsNoTracking().SingleOrDefaultAsync(user => user.Email == email);
         }
     }
 }

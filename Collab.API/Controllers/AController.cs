@@ -33,10 +33,10 @@ namespace Collab.API.Controllers
         }
 
         // GET api/[entities]/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public virtual async Task<ActionResult<TEntity>> Get(int id)
+        public virtual async Task<ActionResult<TEntity>> GetById(int id)
         {
             TEntity retrievedEntity = await db.GetByIdAsync(id);
             if (retrievedEntity == null)
