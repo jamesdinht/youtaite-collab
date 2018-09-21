@@ -48,7 +48,8 @@ namespace Collab.API
                     {
                         builder.AllowAnyOrigin()
                             .AllowAnyMethod()
-                            .AllowAnyHeader();
+                            .AllowAnyHeader()
+                            .AllowCredentials();
                     }
                 );
             });
@@ -107,6 +108,7 @@ namespace Collab.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
