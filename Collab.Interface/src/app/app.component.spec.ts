@@ -14,6 +14,10 @@ import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { CallbackComponent } from './auth/callback/callback.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserService } from './users/user.service';
+import { HttpService } from './shared/http.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AuthService } from './auth/auth/auth.service';
 
 describe('AppComponent', () => {
 
@@ -38,6 +42,12 @@ describe('AppComponent', () => {
         MatButtonModule,
         MatProgressSpinnerModule,
         RouterTestingModule.withRoutes(appRoutes),
+        HttpClientTestingModule
+      ],
+      providers: [
+        HttpService,
+        AuthService,
+        UserService
       ]
     }).compileComponents();
 
@@ -57,12 +67,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toBe('Youtaite Collab');
-  }));
-
-  it('should navigate to users on "/users"', fakeAsync(() => {
-    router.navigate(['users']);
-    tick();
-    expect(location.path()).toBe('/users');
   }));
 
   it('should navigate to projects on "/projects"', fakeAsync(() => {

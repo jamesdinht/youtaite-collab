@@ -13,6 +13,7 @@ import { ProjectDetailsComponent } from '../project-details/project-details.comp
 import { AuthService } from '../auth/auth/auth.service';
 import { CallbackComponent } from '../auth/callback/callback.component';
 import { ProfileComponent } from '../profile/profile.component';
+import { UserService } from '../users/user.service';
 
 describe('TopNavbarComponent', () => {
   let component: TopNavbarComponent;
@@ -38,7 +39,8 @@ describe('TopNavbarComponent', () => {
         RouterTestingModule.withRoutes(appRoutes),
       ],
       providers: [
-        AuthService
+        AuthService,
+        UserService
       ]
     })
     .compileComponents();
