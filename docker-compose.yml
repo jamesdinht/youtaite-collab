@@ -31,12 +31,13 @@ services:
       dockerfile: Dockerfile
     image: jamesdinht/collab-webapi:0.1.0
     volumes:
-      - ./Collab.API/appsettings.Development.json:/app/appsettings.Development.json
       - ./Collab.API/appsettings.Production.json:/app/appsettings.Production.json
     ports: 
       - "9000:80"
     networks:
       - collabnetwork
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
 
   interface:
     build:
@@ -47,6 +48,8 @@ services:
       - "9100:4200"
     networks:
       - collabnetwork
+    environment:
+      - env=prod
 
 networks:
   collabnetwork:
