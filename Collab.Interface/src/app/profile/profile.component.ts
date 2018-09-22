@@ -13,13 +13,9 @@ export class ProfileComponent implements OnInit {
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    if (this.authService.userProfile) {
-      this.profile = this.authService.userProfile;
-    } else {
-      this.authService.getProfile((err, profile) => {
-        this.profile = profile;
-      });
-    }
+    this.authService.getProfile((err, data) => {
+      this.profile = data;
+    });
   }
 
 }
