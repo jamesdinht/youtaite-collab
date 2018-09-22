@@ -2,11 +2,11 @@ import { BaseModel } from './BaseModel';
 
 export class User extends BaseModel {
     nickname: string;
-    emailAddress: string;
+    email: string;
 
-    constructor(id: number, nickname: string, emailAddress: string) {
+    constructor(nickname: string, email: string, id?: number) {
         super(id);
         this.nickname = nickname;
-        this.emailAddress = emailAddress;
+        this.email = email;
     }
 }

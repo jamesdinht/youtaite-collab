@@ -16,6 +16,7 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { CallbackComponent } from './auth/callback/callback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
+import { UserService } from './users/user.service';
 
 export const appRoutes: Routes = [
   {
@@ -73,7 +74,8 @@ export const appRoutes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    UserService
   ],
   bootstrap: [AppComponent]
 })

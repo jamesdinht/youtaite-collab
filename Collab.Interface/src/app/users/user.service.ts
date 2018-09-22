@@ -31,6 +31,13 @@ export class UserService extends HttpService {
       );
   }
 
+  public getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(`${environment.usersUrl}/${email}`, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('getUserByEmail', null))
+      );
+  }
+
   public createUser(userToCreate: User): Observable<User> {
     return this.create<User>(userToCreate)
       .pipe(

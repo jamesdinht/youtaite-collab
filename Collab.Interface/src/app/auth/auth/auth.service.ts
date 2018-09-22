@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
 import { LogService } from '../../shared/log.service';
 import { Config } from '../authconfig';
-import { of, timer } from 'rxjs';
+import { of, timer, Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
+import { UserService } from '../../users/user.service';
+import { User } from '../../models/user';
 
 (window as any).global = window;
 
@@ -13,11 +15,12 @@ import { mergeMap } from 'rxjs/operators';
 })
 export class AuthService {
 
-  userProfile: any;
-  refreshSubscription: any;
+  private currentUser: User;
+  private userProfile: any;
+  private refreshSubscription: any;
 
-  config = new Config();
-  auth0 = new auth0.WebAuth({
+  private config = new Config();
+  private auth0 = new auth0.WebAuth({
     clientID: this.config.AUTH_CONFIG.CLIENT_ID,
     domain: this.config.AUTH_CONFIG.CLIENT_DOMAIN,
     responseType: this.config.AUTH_CONFIG.RESPONSETYPE,
@@ -26,7 +29,7 @@ export class AuthService {
     scope: this.config.AUTH_CONFIG.SCOPE
   });
 
-  constructor(private router: Router, private logger: LogService) { }
+  constructor(private router: Router, private logger: LogService, private userService: UserService) { }
 
   public login(): void {
     this.auth0.authorize();
@@ -71,6 +74,9 @@ export class AuthService {
       clientID: this.config.AUTH_CONFIG.CLIENT_ID,
       federated: true
     });
+
+    this.userProfile = null;
+    this.currentUser = null;
   }
 
   public isAuthenticated(): boolean {
@@ -122,17 +128,39 @@ export class AuthService {
   }
 
   public getProfile(callback): void {
+    if (!this.userProfile) {
+      this.retrieveAuthInformation(callback);
+    }
+  }
+
+  public getCurrentUser(): Observable<User> {
+    if (!this.currentUser) {
+      this.retrieveAuthInformation((err, data) => {
+        this.userService.getUserByEmail(data.email).subscribe(user => {
+          this.currentUser = user;
+        });
+      });
+    }
+
+    return of(this.currentUser);
+  }
+
+  // Method to call on Auth0's endpoint to obtain information about the authenticated user
+  private retrieveAuthInformation(callback): any {
     const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
       throw new Error('Access Token must exist to fetch profile.');
     }
 
     this.auth0.client.userInfo(accessToken, (err, profile) => {
-      if (profile) {
-        this.userProfile = profile;
+      if (err) {
+        this.logger.logError(err, 'retrieveAuthInformation');
+        return null;
       }
       callback(err, profile);
     });
+
+    return null;
   }
 
 }
